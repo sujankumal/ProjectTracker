@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
 
-                <div class="panel-body">
+                <div class="panel-body bg-info">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
@@ -59,6 +59,18 @@
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="select-batch" class="col-md-4 control-label">Select Batch</label>
+                            <div class="col-md-6">
+                               <select id="select-batch" >
+                                    <option value="2014">2014</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                </select>
+                            </div>
+                            
                         </div>
 
                         <div class="form-group">

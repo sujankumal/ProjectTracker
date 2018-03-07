@@ -485,16 +485,16 @@
         },
         {
             "name": "laravel/tinker",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/tinker.git",
-                "reference": "852c2abe0b0991555a403f1c0583e64de6acb4a6"
+                "reference": "eb8d3cfb41b7f74fb0ef4724e459d44f4cbb35b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/tinker/zipball/852c2abe0b0991555a403f1c0583e64de6acb4a6",
-                "reference": "852c2abe0b0991555a403f1c0583e64de6acb4a6",
+                "url": "https://api.github.com/repos/laravel/tinker/zipball/eb8d3cfb41b7f74fb0ef4724e459d44f4cbb35b8",
+                "reference": "eb8d3cfb41b7f74fb0ef4724e459d44f4cbb35b8",
                 "shasum": ""
             },
             "require": {
@@ -544,7 +544,7 @@
                 "laravel",
                 "psysh"
             ],
-            "time": "2017-12-18T16:25:11+00:00"
+            "time": "2018-03-06T13:48:07+00:00"
         },
         {
             "name": "league/flysystem",
@@ -1002,16 +1002,16 @@
         },
         {
             "name": "psr/simple-cache",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "753fa598e8f3b9966c886fe13f370baa45ef0e24"
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/753fa598e8f3b9966c886fe13f370baa45ef0e24",
-                "reference": "753fa598e8f3b9966c886fe13f370baa45ef0e24",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
                 "shasum": ""
             },
             "require": {
@@ -1046,7 +1046,7 @@
                 "psr-16",
                 "simple-cache"
             ],
-            "time": "2017-01-02T13:31:39+00:00"
+            "time": "2017-10-23T01:57:42+00:00"
         },
         {
             "name": "psy/psysh",
