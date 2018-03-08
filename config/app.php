@@ -227,5 +227,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    'adminName' => env('APP_DEFAULT_ADMIN_NAME', 'admin'),
+    'adminEmail' => env('App_DEFAULT_ADMIN_Email', 'admin@projecttracker.com'),
+    'adminPassword' => env('App_DEFAULT_ADMIN_PASSWORD', 'admin@projecttracker'),
 ];

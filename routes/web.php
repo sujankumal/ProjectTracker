@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Route::get('dashboard', function () {
     return view('dashboard');
-});
+})->middleware('auth');
 
 Route::get('about', function () {
     return view('about');

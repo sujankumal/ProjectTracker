@@ -61,13 +61,15 @@
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="select-batch" class="col-md-4 control-label">Select Batch</label>
-                            <div class="col-md-6">
-                               <select id="select-batch" >
-                                    <option value="2014">2014</option>
-                                    <option value="2015">2015</option>
-                                    <option value="2016">2016</option>
+                        <div class="form-groupform-group{{ $errors->has('selectBatch') ? ' has-error' : '' }}">
+                            <label for="selectBatch" class="col-md-4 control-label">Select Batch</label>
+                            
+                            <div class="col-md-6" style="margin-top:5px;">
+                               <select id="selectBatch" name ="selectBatch">
+                                   <option value=""></option>
+                                   @for($i=2010;$i<=date('Y');$i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
                                 </select>
                             </div>
                             
