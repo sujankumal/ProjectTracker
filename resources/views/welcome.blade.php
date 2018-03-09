@@ -1,96 +1,51 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+@section('content')
+<div class="container-fluid bg-1 text-center">
+  <h3 class="margin">WELCOME</h3>
+  <img src="{{}}" class="img-responsive img-circle margin" style="display:inline" alt="Project Tracker" width="350" height="350">
+  
+</div>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center">
+  <h3 class="margin">Project Tracker Info.</h3>
+  <p>Project Tracker provides information to various people or stakeholders.
+   It measures and justify the level of effort required to complete the project(s). 
+   Project tracker tools implements as web software, typically multi-user applications used by the project
+    manager or another subject matter expert, supervisor, students. Project management software have the capacity to plan,
+     organize, and manage the projects.</p>
+  <a href="#" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-search"></span> Search
+  </a>
+</div>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #FE5623;
-                color: #fff;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+<!-- Third Container (Grid) -->
+<div class="container-fluid bg-3 text-center">    
+  
+  <div class="row">
+    <div class="col-sm-4">
+    <h3 class="margin">Problem Statement</h3><br>
+      <p>We have been involved in many software projects as a part in partial fulfillment of the requirements for the Degree of Bachelor of Engineering in Software Engineering. The main problem we are facing in this process is proper tracking of the project. Sometimes supervisors are not available and when they are available students are not available. Mostly when deadline is near students somehow manage to complete the project but, supervisor has no knowledge who did what and how much tasks.</p>
+     
+    </div>
+    <div class="col-sm-4"> 
+    <h3 class="margin">Objectives</h3><br>
+      <p>Monitors the projects progress, records about events , meetings via QR code/ Bar code, individual tasks (task division), provide the notification about the events via the email, information to stakeholders that justify the level of effort required to complete the project(s).
+</p>
+      
+    </div>
+    <div class="col-sm-4"> 
+      <h3 class="margin">Implication</h3><br>
+      <p>Project management nowadays is regarded as a very priority as all companies or organizations, whether small or large, are at one time or another involved in implementing new undertakings, innovation and changes on project. So, on completion and success of this project we will be able to see competitive creative outputs.</p>
+  
+    </div>
+  </div>
+</div>
 
-            .full-height {
-                height: 100vh;
-            }
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <p>ProjectTracker © 2018</p> 
+</footer>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #fff;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    {{ config('app.name', 'Laravel') }}
-                </div>
-
-             <!-- /* <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                 </div>
-                */-->
-            </div>
-        </div>
-    </body>
-</html>
+@endsection

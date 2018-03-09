@@ -11,17 +11,21 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('dashboard', function () {
+Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
 
-Route::get('about', function () {
+Route::get('/about', function () {
     return view('about');
-});
-Auth::routes();
+})->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//redirect and callback URLs
+Route::get('auth/google', 'Auth\AuthGoogleController@redirectToGoogle');
+Route::get('auth/google/callback', 'Auth\AuthGoogleController@handleGoogleCallback');

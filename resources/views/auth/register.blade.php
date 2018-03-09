@@ -81,6 +81,14 @@
                                     Register
                                 </button>
                             </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <a href="{{ url('auth/google') }}" class="btn btn-md btn-success">
+                                    <strong>Login With Google</strong>
+                                </a>
+                            </div>
                         </div>
                     </form>
                 </div>
