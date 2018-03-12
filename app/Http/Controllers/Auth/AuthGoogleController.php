@@ -38,13 +38,13 @@ class AuthGoogleController extends Controller
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
                 'password' => bcrypt($user->getEmail()),
-                'confirmed'=>'1', //
+                'confirmed'=>'1', 
             ]);
             //Auth::loginUsingId($user->id);
             Auth::attempt(['email' => $user->getEmail(), 'password' => $user->getEmail()]);
             return redirect()->route('home');
         } catch (Exception $e) {
-            return redirect('auth/facebook');
+            return redirect('auth/insta');
         }
     }
 }
