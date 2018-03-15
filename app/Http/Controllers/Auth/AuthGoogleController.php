@@ -42,7 +42,8 @@ class AuthGoogleController extends Controller
             ]);
             //Auth::loginUsingId($user->id);
             Auth::attempt(['email' => $user->getEmail(), 'password' => $user->getEmail()]);
-            return redirect()->route('home');
+            
+            return redirect()->route('passwordchange');
         } catch (Exception $e) {
             return redirect('auth/insta');
         }

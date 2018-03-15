@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
 Route::get('/about', function () {
     return view('about');
 })->middleware('auth');
+Route::get('passwordchange', function () {
+    return view('passChange');
+})->name('passwordchange');
+Route::any('password/update', 'PasswordChangeController@postCredentials');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
