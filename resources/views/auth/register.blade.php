@@ -61,9 +61,8 @@
                             </div>
                         </div>
                         
-                        <div class="form-groupform-group{{ $errors->has('selectBatch') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('selectBatch') ? ' has-error' : '' }}">
                             <label for="selectBatch" class="col-md-4 control-label">Select Batch</label>
-                            
                             <div class="col-md-6" style="margin-top:5px;">
                                <select id="selectBatch" name ="selectBatch">
                                    <option value=""></option>
@@ -71,8 +70,10 @@
                                     <option value="{{$i}}">{{$i}}</option>
                                     @endfor
                                 </select>
+                                @if ($errors->has('selectBatch'))
+                                    <span class="help-block"><strong>{{ $errors->first('selectBatch') }}</strong></span>
+                                @endif
                             </div>
-                            
                         </div>
 
                         <div class="form-group">

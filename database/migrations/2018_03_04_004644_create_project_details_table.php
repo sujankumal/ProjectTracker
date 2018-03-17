@@ -24,9 +24,9 @@ class CreateProjectDetailsTable extends Migration
             $table->foreign('supervisor_id')->references('id')->on('users');
             $table->integer('leader_id')->unsigned();
             $table->foreign('leader_id')->references('id')->on('users');
-            $table->integer('member_idi')->unsigned();
+            $table->integer('member_idi')->unsigned()->nullable();
             $table->foreign('member_idi')->references('id')->on('users');
-            $table->integer('member_idii')->unsigned();
+            $table->integer('member_idii')->unsigned()->nullable();
             $table->foreign('member_idii')->references('id')->on('users'); 
             $table->timestamps();
         });
