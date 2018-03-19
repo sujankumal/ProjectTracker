@@ -21,11 +21,11 @@ class CreateMinutesTable extends Migration
             $table->longText('agenda');
             $table->longText('discussion');
             $table->text('leader_acheivement');
-            $table->text('member_i_acheivement');
-            $table->text('member_ii_acheivement');
+            $table->text('member_i_acheivement')->nullable();
+            $table->text('member_ii_acheivement')->nullable();
             $table->text('leader_responsibility');
-            $table->text('member_i_responsibility');
-            $table->text('member_ii_responsibility');
+            $table->text('member_i_responsibility')->nullable();
+            $table->text('member_ii_responsibility')->nullable();
             $table->timestamps();
         });
     }

@@ -2,9 +2,13 @@
 <div class="container">
     <div class="row">
         <div panel-body bg-info>
-            <form class="form-horizontal" method="POST" action="/projectCreate">
+            <form id="projectForm" class="form-horizontal" method="POST" action="/projectCreate">
                 {{ csrf_field() }}
-
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
                 <div class="form-group{{ $errors->has('projName') ? ' has-error' : '' }}">
                     <label for="projName" class="col-md-4 control-label">Project Name</label>
                     <div class="col-md-6">
@@ -113,7 +117,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-md btn-success">Submit</button>
+                        <button type="submit" class="btn btn-md btn-success" form="projectForm">Submit</button>
                     </div>
                 </div>
             </form>

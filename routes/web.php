@@ -20,6 +20,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
 Route::post('/projectCreate','ProjectDetailController@store');
+Route::post('/minuteCreate','MinuteController@store');
+Route::get('/check','ProjectDetailController@index');
 Route::get('/about', function () {
     return view('about');
 })->middleware('auth');

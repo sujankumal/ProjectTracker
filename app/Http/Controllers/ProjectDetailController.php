@@ -6,6 +6,9 @@ use App\project_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use App;
+use Illuminate\View\View;
+use function PHPSTORM_META\type;
 
 class ProjectDetailController extends Controller
 {
@@ -17,6 +20,15 @@ class ProjectDetailController extends Controller
     public function index()
     {
         //
+        $user = App\User::all();
+        $project = App\project_detail::all();
+        foreach ($user as $item)
+        {
+            echo $item;
+            echo $project->get($item->id)->name."<br>";
+
+        }
+
     }
 
     /**
@@ -24,7 +36,7 @@ class ProjectDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(array $data)
+    public function create()
     {
         //
 
@@ -51,7 +63,7 @@ class ProjectDetailController extends Controller
                 'member_idi'=> $request_data['projectMember1'],
                 'member_idii'=> $request_data['projectMember2'],
             ]);
-        return Redirect::back()->with('msg','Project Added!!');
+        return Redirect::back()->with('message','Project Added!!');
          // return redirect()->route('home');
     }
 
@@ -64,6 +76,7 @@ class ProjectDetailController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
