@@ -1,7 +1,8 @@
 @extends ('layouts.dashboard')
-@section('page_heading','Project Form')
+@section('page_heading','Form')
 
 @section('section')
+
 <div class="container">
     <div class="row">
         <div panel-body bg-info>
@@ -127,6 +128,7 @@
         </div>
     </div>
 </div>
+
 
 
 

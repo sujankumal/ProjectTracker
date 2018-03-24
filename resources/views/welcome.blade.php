@@ -2,23 +2,23 @@
 
 @section('content')
 <div class="container-fluid bg-1 text-center">
-  <h3 class="margin">WELCOME</h3>
-  <img src="{{}}" class="img-responsive img-circle margin" style="display:inline" alt="Project Tracker" width="350" height="350">
+  <a href="{{url('home')}}"><h3 class="margin">WELCOME</h3></a>
+  <img src="{{url('images/image.jpg')}}" class="img-responsive img-circle margin" style="display:inline" alt="Project Tracker" width="350" height="350">
   
 </div>
 
-<!-- Second Container -->
 <div class="container-fluid bg-2 text-center">
-  <h3 class="margin">Project Tracker Info.</h3>
-  <p>Project Tracker provides information to various people or stakeholders.
-   It measures and justify the level of effort required to complete the project(s). 
-   Project tracker tools implements as web software, typically multi-user applications used by the project
-    manager or another subject matter expert, supervisor, students. Project management software have the capacity to plan,
-     organize, and manage the projects.</p>
-  <a href="#" class="btn btn-default btn-lg">
-    <span class="glyphicon glyphicon-search"></span> Search
-  </a>
+  <h3 class="margin">List of Projects</h3>
+  <div>
+    <ol>
+    @foreach(App\project_detail::all() as $project)
+      <li >{{$project->name}}</li>
+    @endforeach
+     </ol>
+  </div>
 </div>
+
+
 
 <!-- Third Container (Grid) -->
 <div class="container-fluid bg-3 text-center">    

@@ -1,12 +1,15 @@
+@extends ('layouts.dashboard')
+@section('page_heading','Minute Form')
 
+@section('section')
 <div class="container">
     <div class="row">
         <div panel-body bg-info>
-            <form id="minuteForm" class="form-horizontal" method="POST" action="/minuteCreate" >
-                {{ csrf_field() }}
+            <form id="minuteForm" class="form-horizontal" method="POST" action="/minuteCreate" enctype="multipart/form-data">
+              {{ csrf_field() }}
                 @if(session()->has('messageMinuteCreate'))
                     <div class="alert alert-success">
-                        {{ session()->get('message') }}
+                        {{ session()->get('messageMinuteCreate') }}
                     </div>
                 @endif
                 <div class="form-group{{ $errors->has('project_id') ? ' has-error' : '' }}">
@@ -117,13 +120,14 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group{{ $errors->has('photo') ? ' has-error' : '' }}">
-                    <label for="photo" class="col-md-4 control-label">Enter photo</label>
+                <div class="form-group{{ $errors->has('imageInput') ? ' has-error' : '' }}">
+                    <label for="imageInput" class="col-md-4 control-label">Enter photo</label>
                     <div class="col-md-6">
-                        <input id="photo" type="file" class="form-control" name="photo" value="{{ old('photo') }}"  >
-
-                        @if ($errors->has('photo'))
-                            <span class="help-block"><strong>{{ $errors->first('photo') }}</strong></span>
+                        
+                        <input data-preview="#preview" name="imageInput" type="file" id="imageInput">
+                        <img class="col-sm-6" id="preview"  src="" ></img>
+                        @if ($errors->has('imageInput'))
+                            <span class="help-block"><strong>{{ $errors->first('imageInput') }}</strong></span>
                         @endif
                     </div>
                 </div>
@@ -136,3 +140,4 @@
         </div>
     </div>
 </div>
+@stop
