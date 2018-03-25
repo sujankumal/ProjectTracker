@@ -37,7 +37,10 @@ Route::get('auth/google', 'Auth\AuthGoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\AuthGoogleController@handleGoogleCallback');
 
 
-
+Route::get('/QR', function () {
+    return view('QR');
+})->middleware('auth');
+Route::post('/QRCreate', 'QrController@create');
 // Route::get('/', function()
 // {
 // 	return View::make('home');
