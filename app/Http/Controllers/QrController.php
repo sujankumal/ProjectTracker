@@ -9,8 +9,10 @@ use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Response\QrCodeResponse;
 use Auth;
 use App\qr;
+use App\project_detail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 class QrController extends Controller
 {
     /**
@@ -84,6 +86,73 @@ class QrController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+        $project_id = $data['project_id'];
+        $qrdata = $data['qrdata'];
+        //check if project is selected
+        if (is_null($project_id)) {
+            return response()->json(['qrdatamessage' => 0]); // message 0 = project not selected 
+        }
+        // get qrs generated for the project
+        $qrvalues = DB::table('qrs')->where('project_id', $project_id)->get();
+        $checkIfFound = 0; 
+
+        foreach ($qrvalues as $value) {
+             // if qr matched get inside and change database value that is signature  
+             if ($value->QR_Generate == $qrdata) {
+                //get current user
+                $u_id = \Auth::user()->id;
+                // get  supervisor leader etc detail for the project
+                $project_details = DB::table('project_details')->where('id', $project_id)->get();
+               // $project_details = project_detail::where('id', $project_id);
+               
+                //get supervisor and update supervisor field
+                
+                $supervisor = $project_details->first()->supervisor_id;
+                if ($supervisor == $u_id) {
+                    
+                     DB::table('qrs')->where('id', $value->id)->update(['supervisor_check' => 1]);
+                     $checkIfFound =1;
+                     break;
+                }
+
+                $leader_id = $project_details->first()->leader_id;
+                if ($leader_id == $u_id) {
+                    
+                     DB::table('qrs')->where('id', $value->id)->update(['leader_check' => 1]);
+                     $checkIfFound =1;
+                     break;
+                }
+                $member_idi = $project_details->first()->member_idi;
+                if ($member_idi == $u_id) {
+                    
+                     DB::table('qrs')->where('id', $value->id)->update(['member_i_check' => 1]);
+                     $checkIfFound =1;
+                     break;
+                }
+                $member_idii = $project_details->first()->member_idii;
+                if ($member_idii == $u_id) {
+                    
+                     DB::table('qrs')->where('id', $value->id)->update(['member_ii_check' => 1]);
+                     $checkIfFound =1;
+                     break;
+                }
+            }
+        }
+        if ($checkIfFound == 0) {
+            # code...
+            return response()->json(['qrdatamessage' =>  2]); 
+        }elseif ($checkIfFound == 1) {
+            # code...
+            return response()->json(['qrdatamessage' =>  1]);
+        }
+       // return response()->json(['qrdatamessage' => $data['qrdata']]);
+       
+    
+       // message 0 = project not selected 
+       // message 1 = qr matched 
+       // message 2 = qr not matched
+       
     }
 
     /**

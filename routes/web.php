@@ -41,6 +41,11 @@ Route::get('/QR', function () {
     return view('QR');
 })->middleware('auth');
 Route::post('/QRCreate', 'QrController@create');
+
+Route::get('/QRScan', function () {
+    return view('QRScan');
+})->middleware('auth');
+Route::post('/QRstore', 'QrController@store');
 // Route::get('/', function()
 // {
 // 	return View::make('home');
