@@ -13,10 +13,42 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/my.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <style>
+            
+        body, html {
+        height: 100%;
+    }
+                    
+    .bg { 
+        /* The image used */
+        background-image: url("{{url('images/background-1.jpg')}}");
+
+        /* Full height */
+        height: 100%; 
+        
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }      
+    
+    #nav-login > li > a:hover,#nav-login > li > a:focus {
+        background-color:#D05623;
+    }
+    #brand-name:hover{
+        background-color:#D05623;
+    }           
+    </style>
+
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top orange-color white-text" >
+<body >
+      
+    <div id="app" style="height:100%">
+        <nav class="navbar  navbar-static-top orange-color white-text"  style="margin:0%">
             <div class="container">
                 <div class="navbar-header">
 
@@ -29,7 +61,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}" style="color:#fff;">
+                    <a class="navbar-brand" href="{{ url('/') }}" style="color:#fff;" id="brand-name">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -41,7 +73,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right " >
+                    <ul class="nav navbar-nav navbar-right " id="nav-login">
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}" style="color:#fff;">Login</a></li>
@@ -71,8 +103,15 @@
                 </div>
             </div>
         </nav>
-
+        
+        <div class="bg">
         @yield('content')
+        </div>
+
+        <!-- Footer -->
+        <footer class="container-fluid bg-4 text-center navbar-fixed-bottom orange-color white-text" style="margin:0%">
+            <p>ProjectTracker © 2018</p> 
+        </footer>
     </div>
 
     <!-- Scripts -->
