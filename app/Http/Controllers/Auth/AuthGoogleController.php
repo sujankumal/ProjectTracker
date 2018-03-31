@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Socialite;
 use Auth;
-
+use Illuminate\Support\Facades\DB;
 class AuthGoogleController extends Controller
 {
     //
@@ -29,11 +29,17 @@ class AuthGoogleController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
-            if (Auth::attempt(['email' => $user->getEmail(), 'password' => $user->getEmail()]))
-             {
-                 //successful login
-                   return redirect()->intended('home');
-             }
+            
+            $userdata = DB::table('users')->where('email', $user->getEmail())->get();
+            if($userdata!=null){
+                foreach ($userdata as $value) {
+                    if($value->confirmed == 1){
+                        // logged in
+                        Auth::loginUsingId($value->id, true);
+                        return redirect()->intended('home');
+                    }
+                }
+            }
              User::create([
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
@@ -42,7 +48,6 @@ class AuthGoogleController extends Controller
             ]);
             //Auth::loginUsingId($user->id);
             Auth::attempt(['email' => $user->getEmail(), 'password' => $user->getEmail()]);
-            
             return redirect()->route('passwordchange');
         } catch (Exception $e) {
             return redirect('auth/insta');
