@@ -33,9 +33,12 @@ class AuthGoogleController extends Controller
             $userdata = DB::table('users')->where('email', $user->getEmail())->get();
             if($userdata!=null){
                 foreach ($userdata as $value) {
+                    Auth::loginUsingId($value->id, true);
                     if($value->confirmed == 1){
                         // logged in
-                        Auth::loginUsingId($value->id, true);
+                        return redirect()->intended('home');
+                    }else{
+                        DB::table('users')->where('id', $value->id)->update(['confirmed' => 1]);
                         return redirect()->intended('home');
                     }
                 }
