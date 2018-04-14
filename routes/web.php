@@ -30,6 +30,8 @@ Route::get('/tasks', function () {
     return view('projecttask');
 })->middleware('auth');
 Route::post('/projectTaskCreate','ProjectTasksController@store');
+Route::post('/projectTaskDelete','ProjectTasksController@delete');
+
 
 Route::get('passwordchange', function () {
     return view('passChange');

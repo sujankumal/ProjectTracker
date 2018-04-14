@@ -7,6 +7,7 @@ use App\project_task;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App;
+use DB;
 use Illuminate\View\View;
 use function PHPSTORM_META\type;
 
@@ -53,14 +54,28 @@ class ProjectTasksController extends Controller
         if (is_null($task)) {
             return response()->json(['taskAddMessage' => 1]); // message 1 = task empty 
         }
-        $success = project_task::create([
+        try{
+            $success = project_task::create([
                 'project_id'=> $project_id,
                 'task'=>$task,
             ]);
-            return response()->json(['taskAddMessage' => 2]); // message 1 = task empty
-        return Redirect::back()->with('messageProjectTaskCreate','Task Added!!');
+        } catch (\Exception $e){
+            
+            return response()->json(['taskAddMessage' => 3]); // message 3 =  failed to add data
+        }
+            return response()->json(['taskAddMessage' => 2]); // message 2 = task empty
     }
-    
+    //
+    public function delete(Request $request){
+        $request_data = $request->All();
+        $taskDelete = $request_data['task'];
+        try{
+            DB::table('project_tasks')->where('task', '=', $taskDelete)->delete();
+        }catch(\Exception $e){
+            return response()->json(['taskDelMessage' => 200]); // message 100 = task deleted error
+        }
+        return response()->json(['taskDelMessage' => 100]); // message 100 = task deleted
+    }
     /**
      * Display the specified resource.
      *

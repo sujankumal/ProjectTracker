@@ -17,7 +17,36 @@ function selectionChange(){
             
             $.each(resp.taskJSDyViewDatamessage, function(index, value) {
                 var li = document.createElement("li");
+                var btn = document.createElement("BUTTON");
+                var bname = document.createTextNode("delete");
+                
                 li.appendChild(document.createTextNode(value['task']));
+                btn.appendChild(bname);
+                btn.onclick=function(){
+                    console.log(this.value);
+                    $.ajax({
+                        headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+                        type: "POST",
+                        url: '/projectTaskDelete',
+                        data: {task:this.value} ,
+                        success: function(resp) {
+                            if (resp.taskDelMessage == 100) {
+                                document.getElementById('messageDisp').innerHTML = "task deleted";
+                            }else if (resp.taskDelMessage == 200) {
+                                document.getElementById('messageDisp').innerHTML = "task delete error";
+                            }
+                            selectionChange();
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) { 
+                                console.log(JSON.stringify(jqXHR));
+                                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                        }
+                    });
+                    return false;
+                };
+                btn.setAttribute("id","btn"+2);
+                btn.setAttribute("value",value['task']);
+                li.appendChild(btn);
                 ol.appendChild(li);
             }); 
             
@@ -48,6 +77,8 @@ function sendDataToController() {
                 document.getElementById('messageDisp').innerHTML = "Please enter task";
             }else if (resp.taskAddMessage == 2) {
                 document.getElementById('messageDisp').innerHTML = "Task Added!";
+            }else if (resp.taskAddMessage == 3) {
+                document.getElementById('messageDisp').innerHTML = " Error!! Failed to add, Possible Duplicate Entry";
             }
             task.value = '';
         },
