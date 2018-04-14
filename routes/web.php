@@ -25,9 +25,16 @@ Route::get('/check','ProjectDetailController@index');
 Route::get('/about', function () {
     return view('about');
 })->middleware('auth');
+
+Route::get('/tasks', function () {
+    return view('projecttask');
+})->middleware('auth');
+Route::post('/projectTaskCreate','ProjectTasksController@store');
+
 Route::get('passwordchange', function () {
     return view('passChange');
-})->name('passwordchange');
+})->middleware('auth')->name('passwordchange');
+
 Route::any('password/update', 'PasswordChangeController@postCredentials');
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -46,6 +53,7 @@ Route::get('/QRScan', function () {
     return view('QRScan');
 })->middleware('auth');
 Route::post('/QRstore', 'QrController@store');
+Route::post('/taskJSDyView','ProjectTasksController@index');
 // Route::get('/', function()
 // {
 // 	return View::make('home');
