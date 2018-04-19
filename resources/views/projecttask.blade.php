@@ -21,7 +21,7 @@
                   <div class="form-group{{ $errors->has('projID') ? ' has-error' : '' }}">
                     <label for="enteredTask" class="col-md-4 control-label">Project</label>
                     <div class="col-md-6">
-                       <select id="projID" name ="projID" onchange="selectionChange()" class="form-control" required >
+                       <select id="projID" name ="projID" onchange="tselectionChange()" class="form-control" required >
                             <option value=""></option>
                             @foreach(App\project_detail::all() as $project)
                                 <option value="{{$project->id}}">{{$project->name}}</option>
