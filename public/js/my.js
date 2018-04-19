@@ -4,7 +4,7 @@ $('#projectTask').keydown(function (e) {
         return false;
     }
 });
-function selectionChange(){
+function tselectionChange(){
     var ol = document.getElementById("taskList");
     var projID = document.getElementById('projID');
     $(ol).empty();
@@ -35,7 +35,7 @@ function selectionChange(){
                             }else if (resp.taskDelMessage == 200) {
                                 document.getElementById('messageDisp').innerHTML = "task delete error";
                             }
-                            selectionChange();
+                            tselectionChange();
                         },
                         error: function(jqXHR, textStatus, errorThrown) { 
                                 console.log(JSON.stringify(jqXHR));
@@ -59,10 +59,10 @@ function selectionChange(){
    
 }
 function submitClicked(){
-    sendDataToController();
-    selectionChange();
+    tsendDataToController();
+    tselectionChange();
 }
-function sendDataToController() {
+function tsendDataToController() {
     var p_id = document.getElementById('projID').value;
     var task = document.getElementById('enteredTask');
     $.ajax({
