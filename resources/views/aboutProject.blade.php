@@ -35,11 +35,31 @@
                          <div class="col-lg-4 panel panel-default" >
                             <p>Project Task List</p>
                             <ul style="height:250px;  overflow:hidden; overflow-y:scroll;">
-                            <?php $totalNumOftask = null;?>
-                            @foreach(App\project_task::select('task')->where('project_id', app('request')->input('param'))->get() as $taskResult)
+                            <?php 
+                                $totalNumOftask = 0; 
+                                $totalNumOftaskIncomplete = 0;
+                                $totalNumOftaskLeader = 0;
+                                $totalNumOftaskMemberi = 0;
+                                $totalNumOftaskMemberii = 0;
+                            ?>
+                            
+                            @foreach(App\project_task::select('task','task_complete')->where('project_id', app('request')->input('param'))->get() as $taskResult)
                                 <li>{{$taskResult->task}}</li>
-                                <?php $totalNumOftask++; ?>
+
+                                <?php 
+                                    $totalNumOftask++;
+                                    if ($taskResult->task_complete == null) {
+                                        $totalNumOftaskIncomplete++;
+                                    }elseif ($result->leader_id == $taskResult->task_complete) {
+                                        $totalNumOftaskLeader++;
+                                    }elseif ($result->member_idi == $taskResult->task_complete) {
+                                        $totalNumOftaskMemberi++;
+                                    }elseif ($result->member_idii == $taskResult->task_complete) {
+                                        $totalNumOftaskMemberii++;
+                                    }
+                                ?>
                             @endforeach
+
                             </ul>
                          </div>
                      </div>
@@ -54,10 +74,10 @@
                             function drawChart() {
                               var data = google.visualization.arrayToDataTable([
                               ['Member', 'percentage'],
-                              ['Incomplete',7],
-                              ['Leader', 8],
-                              ['Member 1st', 2],
-                              ['Member 2nd', 4]
+                              ['Incomplete',{{$totalNumOftaskIncomplete}}],
+                              ['Leader', {{$totalNumOftaskLeader}}],
+                              ['Member 1st', {{$totalNumOftaskMemberi}}],
+                              ['Member 2nd', {{$totalNumOftaskMemberii}}]
                               
                             ]);
 
