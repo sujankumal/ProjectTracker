@@ -25,6 +25,13 @@ class ProjectTasksController extends Controller
         $tasks = App\project_task::all()->where('project_id',$project_id);
         return response()->json(['taskJSDyViewDatamessage' =>  $tasks]);
     }
+    public function displayTaskForMinute(Request $request){
+        $data = $request->all();
+        $project_id = $data['pid'];
+        $tasks = App\project_task::select('id','task')->where('project_id',$project_id)->get();
+        return response()->json(['forMinuteResponseTask' =>  $tasks]);
+        
+    }
 
     /**
      * Show the form for creating a new resource.

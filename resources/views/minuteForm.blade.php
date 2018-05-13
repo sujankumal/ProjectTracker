@@ -15,7 +15,7 @@
                 <div class="form-group{{ $errors->has('project_id') ? ' has-error' : '' }}">
                     <label for="project_id" class="col-md-4 control-label">Project Name</label>
                     <div class="col-md-6">
-                        <select id="project_id" name ="project_id" class="form-control">
+                        <select id="project_id" name ="project_id" class="form-control" onchange="projectSelected()">
                             <option value=""></option>
                             @foreach(App\project_detail::all() as $project)
                                 <option value="{{$project->id}}">{{$project->name}}</option>
@@ -64,9 +64,11 @@
                 <div class="form-group{{ $errors->has('leader_acheivement') ? ' has-error' : '' }}">
                     <label for="leader_acheivement" class="col-md-4 control-label">Acheivement of Leader</label>
                     <div class="col-md-6">
-                        <input id="leader_acheivement" type="text" class="form-control" name="leader_acheivement" value="{{ old('leader_acheivement') }}" required >
-
-                    @if ($errors->has('leader_acheivement'))
+                        
+                        <div id="leader_acheivement" name ="leader_acheivement" class="" >
+                            
+                        </div>
+                        @if ($errors->has('leader_acheivement'))
                             <span class="help-block"><strong>{{ $errors->first('leader_acheivement') }}</strong></span>
                         @endif
                     </div>
@@ -74,7 +76,10 @@
                 <div class="form-group{{ $errors->has('member_i_acheivement') ? ' has-error' : '' }}">
                     <label for="member_i_acheivement" class="col-md-4 control-label">Acheivement of Member 1st</label>
                     <div class="col-md-6">
-                        <input id="member_i_acheivement" type="text" class="form-control" name="member_i_acheivement" value="{{ old('member_i_acheivement') }}"  >
+                       
+                        <div id="member_i_acheivement" name ="member_i_acheivement" class="" >
+                            
+                        </div>
                         @if ($errors->has('member_i_acheivement'))
                             <span class="help-block"><strong>{{ $errors->first('member_i_acheivement') }}</strong></span>
                         @endif
@@ -83,8 +88,10 @@
                 <div class="form-group{{ $errors->has('member_ii_acheivement') ? ' has-error' : '' }}">
                     <label for="member_ii_acheivement" class="col-md-4 control-label">Acheivement of Member 2nd</label>
                     <div class="col-md-6">
-                        <input id="member_ii_acheivement" type="text" class="form-control" name="member_ii_acheivement" value="{{ old('member_ii_acheivement') }}"  >
-
+                        
+                        <div id="member_ii_acheivement" name ="member_ii_acheivement" class="" >
+                            
+                        </div>
                     @if ($errors->has('member_ii_acheivement'))
                             <span class="help-block"><strong>{{ $errors->first('member_ii_acheivement') }}</strong></span>
                         @endif
@@ -93,8 +100,10 @@
                 <div class="form-group{{ $errors->has('leader_responsibility') ? ' has-error' : '' }}">
                     <label for="leader_responsibility" class="col-md-4 control-label">Responsibility of Leader</label>
                     <div class="col-md-6">
-                        <input id="leader_responsibility" type="text" class="form-control" name="leader_responsibility" value="{{ old('leader_responsibility') }}" required >
-
+                        
+                        <div id="leader_responsibility" name ="leader_responsibility" class="" >
+                            
+                        </div>
                     @if ($errors->has('leader_responsibility'))
                             <span class="help-block"><strong>{{ $errors->first('leader_responsibility') }}</strong></span>
                         @endif
@@ -103,8 +112,10 @@
                 <div class="form-group{{ $errors->has('member_i_responsibility') ? ' has-error' : '' }}">
                     <label for="member_i_responsibility" class="col-md-4 control-label">Responsibility of Member 1st</label>
                     <div class="col-md-6">
-                        <input id="member_i_responsibility" type="text" class="form-control" name="member_i_responsibility" value="{{ old('member_i_responsibility') }}"  >
-
+                        
+                        <div id="member_i_responsibility" name ="member_i_responsibility" class="" >
+                            
+                        </div>
                     @if ($errors->has('member_i_responsibility'))
                             <span class="help-block"><strong>{{ $errors->first('member_i_responsibility') }}</strong></span>
                         @endif
@@ -113,8 +124,10 @@
                 <div class="form-group{{ $errors->has('member_ii_responsibility') ? ' has-error' : '' }}">
                     <label for="member_ii_responsibility" class="col-md-4 control-label">Responsibility of Member 2nd</label>
                     <div class="col-md-6">
-                        <input id="member_ii_responsibility" type="text" class="form-control" name="member_ii_responsibility" value="{{ old('member_ii_responsibility') }}"  >
-
+                        
+                        <div id="member_ii_responsibility" name ="member_ii_responsibility" class="" >
+                            
+                        </div>
                     @if ($errors->has('member_ii_responsibility'))
                             <span class="help-block"><strong>{{ $errors->first('member_ii_responsibility') }}</strong></span>
                         @endif

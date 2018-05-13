@@ -31,6 +31,7 @@ Route::get('/tasks', function () {
 })->middleware('auth');
 Route::post('/projectTaskCreate','ProjectTasksController@store');
 Route::post('/projectTaskDelete','ProjectTasksController@delete');
+Route::post('/projectTaskShowMinute','ProjectTasksController@displayTaskForMinute');
 
 
 Route::get('passwordchange', function () {
