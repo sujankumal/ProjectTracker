@@ -28,8 +28,12 @@
                                     <div class="container-fluid bg-2 text-center">
                                       <div>
                                         <ol>
-                                        @foreach(App\project_detail::all() as $project)
-                                          <li >{{$project->name}}</li>
+                                        @foreach(App\project_detail::select('id','name')->get() as $project)
+                                            <!-- <a href="{{url('/aboutProject')}}"> -->
+                                                <a href="{{ route('aboutProject', ['project' => $project->name,
+                                                    'param' => $project->id]) }}">
+                                                <li >{{$project->name}}</li>
+                                            </a>
                                         @endforeach
                                          </ol>
                                       </div>

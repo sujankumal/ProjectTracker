@@ -131,3 +131,7 @@ Route::get('/projectForm', function()
 {
 	return View::make('projectForm');
 });
+Route::get('/aboutProject', function()
+{
+	return View::make('aboutProject');
+})->name('aboutProject');
