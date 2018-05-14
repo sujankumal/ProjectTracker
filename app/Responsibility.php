@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class project_task extends Model
+class Responsibility extends Model
 {
     //
     protected $fillable = [
-        'project_id','task','task_complete',
+        'member_id','minute_id','responsibility',
     ];
 }

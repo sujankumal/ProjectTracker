@@ -28,7 +28,7 @@ class ProjectTasksController extends Controller
     public function displayTaskForMinute(Request $request){
         $data = $request->all();
         $project_id = $data['pid'];
-        $tasks = App\project_task::select('id','task')->where('project_id',$project_id)->get();
+        $tasks = App\project_task::select('id','task','task_complete')->where('project_id',$project_id)->get();
         return response()->json(['forMinuteResponseTask' =>  $tasks]);
         
     }
