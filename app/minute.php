@@ -13,5 +13,6 @@ class minute extends Model
         'member_i_acheivement','member_ii_acheivement',
         'leader_responsibility','member_i_responsibility',
         'member_ii_responsibility',
+        'qr_id',
     ];
 }

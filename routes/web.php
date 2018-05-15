@@ -136,3 +136,7 @@ Route::get('/aboutProject', function()
 {
 	return View::make('aboutProject');
 })->name('aboutProject');
+Route::get('/minuteCompleteDetails', function()
+{
+	return View::make('minuteCompleteDetails');
+})->name('minuteCompleteDetails');

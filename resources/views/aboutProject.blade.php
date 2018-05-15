@@ -63,6 +63,36 @@
                             </ul>
                          </div>
                      </div>
+                     <div id="minuteDisplay"style="height:250px;  overflow:hidden; overflow-y:scroll;">
+                        <caption >Minutes</caption>
+                        <table id="minuteTable" class="table ">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Agenda</th>
+                              <th scope="col">Discussion</th>
+                              <th scope="col">More Detail</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php $countData = 1;?>
+                          @foreach(App\minute::all()->where('project_id', app('request')->input('param')) as $minuteResult)
+                              <tr>
+                                <th scope="row">{{$countData++}}</th>
+                                <td>{{$minuteResult->agenda}}</td>
+                                <td>{{$minuteResult->discussion}}</td>
+                                <td>
+                                  <a href="{{ route('minuteCompleteDetails', ['project' => $result->name,
+                                                    'param' => $minuteResult->id]) }}">
+                                                {{$minuteResult->id}}
+                                  </a>
+                                </td>
+                              </tr> 
+                          @endforeach
+                          </tbody>
+                        </table>
+                        
+                     </div>
                      <div class="panel panel-default">
                        
                          <div id="piechart"></div>

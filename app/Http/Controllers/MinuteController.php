@@ -65,6 +65,7 @@ class MinuteController extends Controller
                 'project_id'=> $request_data['project_id'],
                 'agenda'=> $request_data['agenda'],
                 'discussion'=> $request_data['discussion'],
+                'qr_id'=> App\qr::select('id')->where('project_id',$request_data['project_id'])->orderBy('created_at', 'desc')->first()->id,
             ]);
             
             $image = image::create([

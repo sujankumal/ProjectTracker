@@ -19,7 +19,8 @@ class CreateMinutesTable extends Migration
             $table->foreign('project_id')->references('id')->on('project_details');
             $table->longText('agenda');
             $table->longText('discussion');
-            
+            $table->integer('qr_id')->unsigned()->nullable();
+            $table->foreign('qr_id')->references('id')->on('qrs');
             $table->timestamps();
         });
     }
