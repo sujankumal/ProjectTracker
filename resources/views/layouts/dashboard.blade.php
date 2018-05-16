@@ -53,7 +53,9 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li {{ (Request::is('/home') ? 'class="active"' : '') }}>
-                            <a href="userprofile"><i class="fa fa-user fa-fw"></i>{{ Auth::user()->name }} </a>
+                            <a href="{{ route('profile', ['user' => Auth::user()->name,'value' => Auth::id()]) }}">
+                                <i class="fa fa-user fa-fw"></i>
+                                {{ Auth::user()->name }} </a>
                         </li>
                         <li {{ (Request::is('/home') ? 'class="active"' : '') }}>
                             <a href="{{ ('/home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>

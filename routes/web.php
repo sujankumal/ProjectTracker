@@ -140,3 +140,7 @@ Route::get('/minuteCompleteDetails', function()
 {
 	return View::make('minuteCompleteDetails');
 })->name('minuteCompleteDetails');
+Route::get('/profile', function()
+{
+	return View::make('profile');
+})->name('profile');

@@ -25,6 +25,15 @@
                     <div class="container jumbotron">
                         <div class="col-lg-8 panel panel-default">
                              <p>Name: {{$result->name}}</p>
+                             <p>Type: 
+                                @if($result->type == 0)
+                                  <span>Minor Project I</span>
+                                @elseif($result->type == 1)
+                                  <span>Minor Project II</span>
+                                @elseif($result->type == 2)
+                                  <span>Major Project</span>
+                                @endif
+                              </p>
                              <p>Year: {{$result->year}}</p>
                              <p>Project Head: {{$headName}}</p>
                              <p>Project Supervisor: {{$SupervisorName}}</p>
