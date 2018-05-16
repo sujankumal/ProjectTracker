@@ -64,12 +64,12 @@ Route::post('/taskJSDyView','ProjectTasksController@index');
 
 Route::get('/charts', function()
 {
-	return View::make('mcharts');
+	//return View::make('mcharts');
 });
 
 Route::get('/tables', function()
 {
-	return View::make('table');
+	//return View::make('table');
 });
 
 Route::get('/forms', function()
@@ -79,18 +79,18 @@ Route::get('/forms', function()
 
 Route::get('/grid', function()
 {
-	return View::make('grid');
+	//return View::make('grid');
 });
 
 Route::get('/buttons', function()
 {
-	return View::make('buttons');
+	//return View::make('buttons');
 });
 
 
 Route::get('/icons', function()
 {
-	return View::make('icons');
+	//return View::make('icons');
 });
 
 Route::get('/panels', function()
@@ -100,7 +100,7 @@ Route::get('/panels', function()
 
 Route::get('/typography', function()
 {
-	return View::make('typography');
+	//return View::make('typography');
 });
 
 Route::get('/notifications', function()
@@ -150,3 +150,9 @@ Route::get('/uploadppt', function()
 	return View::make('uploadppt');
 })->name('uploadppt');
 Route::post('/pptUpload','PowerpointController@store');
+
+Route::get('/showPPT', function()
+{
+	//return View::make('showPPT');
+	echo "to do";
+})->name('showPPT');

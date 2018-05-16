@@ -102,6 +102,15 @@
                         </table>
                         
                      </div>
+                     <div id="pptdisplay">
+                      <p>List of Presentation</p>
+                       <ol>
+                         @foreach(App\Powerpoint::select('id', 'powerpoint')->where('project_id',app('request')->input('param'))->get() as $res)
+                            <!-- <a href="{{ route('showPPT', ['project' => $result->name,'param' => $res->id]) }}"><li>{{substr($res->powerpoint,11)}}</li></a> -->
+                            <a href="{{asset('uploads/'.$res->powerpoint)}}" ><li>{{substr($res->powerpoint,11)}}</li></a>
+                         @endforeach
+                       </ol>
+                     </div>
                      <div class="panel panel-default">
                        
                          <div id="piechart"></div>
