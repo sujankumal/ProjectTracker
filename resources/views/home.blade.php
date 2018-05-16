@@ -38,11 +38,16 @@
                                     <h4 class="title">List of Users</h4>
                                 </div>
                                 <div class="">
-                                    <div class="container-fluid bg-2 text-center">
+                                    <div class="container-fluid bg-2 ">
                                       <div>
                                         <ol>
                                         @foreach(App\User::all() as $user)
-                                          <li >{{$user->name}}</li>
+                                         <li> 
+                                            <i class="fa fa-user fa-fw "></i>
+                                            <a href="{{ route('profile', ['user' => $user->name,'value' => $user->id]) }}" class="text-center">
+                                            
+                                            {{ $user->name }} </a>
+                                        </li>
                                         @endforeach
                                          </ol>
                                       </div>
