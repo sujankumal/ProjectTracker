@@ -52,17 +52,9 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <!--<li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
+                        <li {{ (Request::is('/home') ? 'class="active"' : '') }}>
+                            <a href="userprofile"><i class="fa fa-user fa-fw"></i>{{ Auth::user()->name }} </a>
                         </li>
-                    -->
                         <li {{ (Request::is('/home') ? 'class="active"' : '') }}>
                             <a href="{{ ('/home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
@@ -74,73 +66,23 @@
                             <a href="{{ ('minuteForm') }}"><i class="fa fa-edit fa-fw"></i> Minute Form</a>
                         </li>
                         <li {{ (Request::is('*tasks') ? 'class="active"' : '') }}>
-                                <a href="{{ ('tasks') }}"><i class="fa fa-edit fa-fw"></i>Project tasks</a>
+                                <a href="{{ ('tasks') }}"><i class="fa fa-edit fa-fw"></i>Project tasks Add</a>
                             </li>
-                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ ('charts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
+                        <li {{ (Request::is('*QR') ? 'class="active"' : '') }}>
+                            <a href="{{ ('QR') }}"><i class="glyphicon glyphicon-qrcode"></i> QR Generate</a>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li {{ (Request::is('*tables') ? 'class="active"' : '') }}>
-                            <a href="{{ ('tables') }}"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        <li {{ (Request::is('*QRScan') ? 'class="active"' : '') }}>
+                            <a href="{{ ('QRScan') }}"><i class="fa fa-scanner"></i><i class="glyphicon glyphicon-search"></i> Scan QR</a>
                         </li>
-
-                        <li >
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li {{ (Request::is('*panels') ? 'class="active"' : '') }}>
-                                    <a href="{{ ('panels') }}">Panels and Collapsibles</a>
-                                </li>
-                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
-                                    <a href="{{ ('buttons') }}">Buttons</a>
-                                </li>
-                                <li {{ (Request::is('*notifications') ? 'class="active"' : '') }}>
-                                    <a href="{{ ('notifications') }}">Alerts</a>
-                                </li>
-                                <li {{ (Request::is('*typography') ? 'class="active"' : '') }}>
-                                    <a href="{{ ('typography') }}">Typography</a>
-                                </li>
-                                <li {{ (Request::is('*icons') ? 'class="active"' : '') }}>
-                                    <a href="{{ ('icons') }}"> Icons</a>
-                                </li>
-                                <li {{ (Request::is('*grid') ? 'class="active"' : '') }}>
-                                    <a href="{{ ('grid') }}">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                        <li {{ (Request::is('*uploadppt') ? 'class="active"' : '') }}>
+                            <a href="{{ ('uploadppt') }}"><i class="fa fa-upload" aria-hidden="true"></i> Upload Presentaion file</a>
                         </li>
                         
+                        
+                        
                         <li {{ (Request::is('*documentation') ? 'class="active"' : '') }}>
-                            <a href="{{ ('documentation') }}"><i class="fa fa-file-word-o fa-fw"></i> Documentation</a>
+                            <a href="{{ ('') }}"><i class="fa fa-file-word-o fa-fw"></i> About</a>
                         </li>
                     </ul>
                 </div>
