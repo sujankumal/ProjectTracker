@@ -144,3 +144,9 @@ Route::get('/profile', function()
 {
 	return View::make('profile');
 })->name('profile');
+
+Route::get('/uploadppt', function()
+{
+	return View::make('uploadppt');
+})->name('uploadppt');
+Route::post('/pptUpload','PowerpointController@store');
