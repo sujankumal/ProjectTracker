@@ -8,6 +8,6 @@ class notice extends Model
 {
     //
     protected $fillable = [
-        'u_id','notice',
+        'u_id','project_id','notice',
     ];
 }

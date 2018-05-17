@@ -17,6 +17,8 @@ class CreateNoticesTable extends Migration
             $table->increments('id');
             $table->integer('u_id')->unsigned();
             $table->foreign('u_id')->references('id')->on('users');
+            $table->integer('project_id')->unsigned();
+            $table->foreign('project_id')->references('id')->on('project_details');
             $table->longText('notice');
             $table->timestamps();
         });

@@ -103,10 +103,6 @@ Route::get('/typography', function()
 	//return View::make('typography');
 });
 
-Route::get('/notifications', function()
-{
-	return View::make('notifications');
-});
 
 Route::get('/blank', function()
 {
@@ -156,3 +152,10 @@ Route::get('/showPPT', function()
 	//return View::make('showPPT');
 	echo "to do";
 })->name('showPPT');
+
+
+Route::get('/notifications', function()
+{
+	return View::make('notifications');
+})->name('notifications');
+Route::post('/sendNotice','NoticeController@store');

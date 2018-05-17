@@ -3,7 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use App;
+use App\notice;
+use DB;
+use Auth;
+use Mail;
+use App\Mail\MailToUser;
 class NoticeController extends Controller
 {
     /**
@@ -24,6 +32,7 @@ class NoticeController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -35,6 +44,51 @@ class NoticeController extends Controller
     public function store(Request $request)
     {
         //
+        $request_data = $request->All();
+        $notice = $request_data['enteredNotice'];
+        $this->validator($request_data);
+        
+        $transaction = DB::transaction(function() use ($request, $request_data)
+        {
+            $notice = notice::create([
+                'u_id'=> Auth::user()->id,
+                'project_id'=> $request_data['projID'],
+                'notice'=>$request_data['enteredNotice'],
+            ]);
+            
+            foreach (App\project_detail::all()->where('id',$request_data['projID']) as $result) {
+               if ($result->head_id!= null) {
+                    Mail::to(App\User::select('email')->where('id',$result->head_id)->first()->email)->send(new MailToUser($notice));
+               }
+               if ($result->supervisor_id!= null&&$result->supervisor_id!=$result->head_id) {
+                    Mail::to(App\User::select('email')->where('id',$result->supervisor_id)->first()->email)->send(new MailToUser($notice));
+               }
+               if ($result->leader_id!= null&&$result->leader_id!=$result->supervisor_id&&$result->leader_id!=$result->head_id) {
+                    Mail::to(App\User::select('email')->where('id',$result->leader_id)->first()->email)->send(new MailToUser($notice));
+               }
+               if ($result->member_idi!= null&&$result->member_idi!=$result->supervisor_id&&$result->member_idi!=$result->head_id&&$result->member_idi!=$result->leader_id) {
+                    Mail::to(App\User::select('email')->where('id',$result->member_idi)->first()->email)->send(new MailToUser($notice));
+               }
+               if ($result->member_idii!= null&&$result->member_idii!=$result->supervisor_id&&$result->member_idii!=$result->head_id&&$result->member_idii!=$result->leader_id&&$result->member_idii!=$result->member_idi) {
+                    Mail::to(App\User::select('email')->where('id',$result->member_idii)->first()->email)->send(new MailToUser($notice));
+               }
+               
+            }
+            
+        });
+         return Redirect::back()->with('messageNoticeCreate','Notice Sent!!');
+        
+    }
+    protected function validator(array $data){
+        $messages = [
+            'projID.required' => 'Project not Specified',
+            'enteredNotice.required'=>'Please enter notice',
+            
+        ];
+        return Validator::make($data, [
+            'projID' => 'required|numeric|max:255',
+            'enteredNotice'=>'required',
+        ],$messages)->validate();
     }
 
     /**

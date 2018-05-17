@@ -3,7 +3,7 @@
 @section('section')
            
             <!-- /.row -->
-            <div class="col-sm-12">
+    <div class="col-sm-12">
            
             <!-- /.row -->
             <div class="row">
@@ -54,25 +54,29 @@
                                     </div>
                                 </div>
                             </span>
-                        
                     </div>
                             
-                    
-                        
-                        <!-- /.panel-body -->
-                   
-                    <!-- /.panel -->
                 @endsection
             @include('widgets.panel', array('header'=>true, 'as'=>'pane2'))
-    </div>
-    <div>
-        <div class="panel">
-            <div class="heading"><h3 class="title">Notification</h3>
-            </div>
-            <div class=" container-fluid"> hello</div>
-         
-        </div>
-    </div>
+         </div>
+         <div class="row col-lg-4">
+                <div class="panel container-fluid jumbotron">
+                        <div class="heading"><h3 class="title">Notification</h3>
+                        </div>
+                         <ol>
+                            @foreach(App\notice::all() as $notice)
+                                <li> 
+                                    <i class="fa fa-bell "></i>&nbsp&nbsp&nbsp
+                                        {{ $notice->notice }} <br>
+                                         By:&nbsp {{App\User::select('name')->where('id',$notice->u_id)->get()->first()->name}} 
+                                            <br>
+                                            Project: &nbsp {{App\project_detail::select('name')->where('id',$notice->project_id)->get()->first()->name}}
+                                </li>
+                            @endforeach
+                         </ol>
+                               
+                    </div>
+         </div>
                 <!-- /.col-lg-8 -->
     </div>
     </div>            

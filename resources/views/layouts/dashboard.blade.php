@@ -80,7 +80,9 @@
                         <li {{ (Request::is('*uploadppt') ? 'class="active"' : '') }}>
                             <a href="{{ ('uploadppt') }}"><i class="fa fa-upload" aria-hidden="true"></i> Upload Presentaion file</a>
                         </li>
-                        
+                        <li {{ (Request::is('*notifications') ? 'class="active"' : '') }}>
+                            <a href="{{ ('notifications') }}"><i class="fa fa-bell" aria-hidden="true"></i> Create Notice </a>
+                        </li>
                         
                         
                         <li {{ (Request::is('*documentation') ? 'class="active"' : '') }}>

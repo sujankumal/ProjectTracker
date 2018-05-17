@@ -1,37 +1,52 @@
 @extends ('layouts.dashboard')
 
-@section ('page_heading','Alerts')
+@section ('page_heading','Notice')
 
 @section('section')
-</div>
-	@section ('alert1_panel_title','Regular Alerts')
-	@section ('alert1_panel_body')
-	@include('widgets.alert', array('class'=>'success', 'message'=> 'You have an alert', 'icon'=> 'user'))
-	@include('widgets.alert', array('class'=>'info', 'message'=> 'My message'))
-	@include('widgets.alert', array('class'=>'warning', 'message'=> 'My message'))
-	@include('widgets.alert', array('class'=>'danger', 'message'=> 'My message', 'icon'=> 'remove'))
-	@endsection
-@include('widgets.panel', array('header'=>true, 'as'=>'alert1'))
-<div class="row">
-	<div class="col-sm-6">
-		@section ('alert3_panel_title','Dismissable Alerts')
-		@section ('alert3_panel_body')
-		@include('widgets.alert', array('class'=>'success', 'dismissable'=>true, 'message'=> 'My message', 'icon'=> 'check'))
-		@include('widgets.alert', array('class'=>'info', 'dismissable'=>true, 'message'=> 'My message'))
-		@include('widgets.alert', array('class'=>'warning', 'dismissable'=>true, 'message'=> 'My message'))
-		@include('widgets.alert', array('class'=>'danger', 'dismissable'=>true, 'message'=> 'My message', 'icon'=> 'remove'))
-		@endsection
-		@include('widgets.panel', array('header'=>true, 'as'=>'alert3'))
-	</div>
-	<div class="col-sm-6">
-		@section ('alert2_panel_title','Links in Alerts')
-		@section ('alert2_panel_body')
-		@include('widgets.alert', array('class'=>'success', 'link'=> 'link', 'message'=> 'My message', 'icon'=> 'check'))
-		@include('widgets.alert', array('class'=>'info', 'link'=> 'link', 'message'=> 'My message'))
-		@include('widgets.alert', array('class'=>'warning', 'link'=> 'link', 'message'=> 'My message'))
-		@include('widgets.alert', array('class'=>'danger', 'link'=> 'link', 'message'=> 'My message', 'icon'=> 'remove'))
-		@endsection
-		@include('widgets.panel', array('header'=>true, 'as'=>'alert2'))
-	</div>
+
+<div class="container">
+    <div class="row">
+        <div panel-body bg-info>
+            <form id="projectNotice" class="form-horizontal" method="POST" action="/sendNotice" enctype="multipart/form-data">
+              {{ csrf_field() }}
+                @if(session()->has('messageNoticeCreate'))
+                    <div class="alert alert-success">
+                        {{ session()->get('messageNoticeCreate') }}
+                    </div>
+                @endif
+                  <div class="form-group{{ $errors->has('projID') ? ' has-error' : '' }}">
+                    <label for="projID" class="col-md-4 control-label">Project</label>
+                    <div class="col-md-6">
+                       <select id="projID" name ="projID"  class="form-control" required>
+                            <option value=""></option>
+                            @foreach(App\project_detail::all() as $project)
+                                <option value="{{$project->id}}">{{$project->name}}</option>
+                            @endforeach
+                        </select>
+                    @if ($errors->has('projID'))
+                            <span class="help-block"><strong>{{ $errors->first('projID') }}</strong></span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('enteredNotice') ? ' has-error' : '' }}">
+                    <label for="enteredNotice" class="col-md-4 control-label">Enter Notice</label>
+                    <div class="col-md-6">
+                        <input id="enteredNotice" type="text" class="form-control" name="enteredNotice" value="{{ old('enteredNotice') }}" required >
+
+                   		 @if ($errors->has('enteredNotice'))
+                            <span class="help-block"><strong>{{ $errors->first('enteredNotice') }}</strong></span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        <button type="Submit" class="btn btn-md btn-success" form="projectNotice" >Submit</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
 </div>
 @stop
