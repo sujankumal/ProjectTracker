@@ -2,8 +2,10 @@
 # Hello Dear,
 
 Message:<br>
-**{{$message}}**
-
+**{{$message->notice}}**
+<br>
+Sender:*{{ Auth::user()->name }}*
+<br>
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent

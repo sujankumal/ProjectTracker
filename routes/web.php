@@ -21,7 +21,7 @@ Route::get('/dashboard', function () {
 })->middleware('auth');
 Route::post('/projectCreate','ProjectDetailController@store');
 Route::post('/minuteCreate','MinuteController@store');
-Route::get('/check','ProjectDetailController@index');
+Route::get('/check','ProjectDetailController@index')->middleware('auth');
 Route::get('/about', function () {
     return view('about');
 })->middleware('auth');
@@ -75,7 +75,7 @@ Route::get('/tables', function()
 Route::get('/forms', function()
 {
 	return View::make('form');
-});
+})->middleware('auth');
 
 Route::get('/grid', function()
 {
@@ -96,7 +96,7 @@ Route::get('/icons', function()
 Route::get('/panels', function()
 {
 	return View::make('panel');
-});
+})->middleware('auth');
 
 Route::get('/typography', function()
 {
@@ -107,7 +107,7 @@ Route::get('/typography', function()
 Route::get('/blank', function()
 {
 	return View::make('blank');
-});
+})->middleware('auth');
 
 // Route::get('/login', function()
 // {
@@ -117,45 +117,45 @@ Route::get('/blank', function()
 Route::get('/documentation', function()
 {
 	return View::make('documentation');
-});
+})->middleware('auth');
 
 Route::get('/minuteForm', function()
 {
 	return View::make('minuteForm');
-});
+})->middleware('auth');
 
 Route::get('/projectForm', function()
 {
 	return View::make('projectForm');
-});
+})->middleware('auth');
 Route::get('/aboutProject', function()
 {
 	return View::make('aboutProject');
-})->name('aboutProject');
+})->middleware('auth')->name('aboutProject');
 Route::get('/minuteCompleteDetails', function()
 {
 	return View::make('minuteCompleteDetails');
-})->name('minuteCompleteDetails');
+})->middleware('auth')->name('minuteCompleteDetails');
 Route::get('/profile', function()
 {
 	return View::make('profile');
-})->name('profile');
+})->middleware('auth')->name('profile');
 
 Route::get('/uploadppt', function()
 {
 	return View::make('uploadppt');
-})->name('uploadppt');
+})->middleware('auth')->name('uploadppt');
 Route::post('/pptUpload','PowerpointController@store');
 
 Route::get('/showPPT', function()
 {
 	//return View::make('showPPT');
 	echo "to do";
-})->name('showPPT');
+})->middleware('auth')->name('showPPT');
 
 
 Route::get('/notifications', function()
 {
 	return View::make('notifications');
-})->name('notifications');
+})->middleware('auth')->name('notifications');
 Route::post('/sendNotice','NoticeController@store');
