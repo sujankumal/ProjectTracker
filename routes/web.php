@@ -159,3 +159,4 @@ Route::get('/notifications', function()
 	return View::make('notifications');
 })->middleware('auth')->name('notifications');
 Route::post('/sendNotice','NoticeController@store');
+Route::post('/profilePhotoUpload','ProfileImageController@store');
