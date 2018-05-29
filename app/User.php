@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function project_details(){
         return $this->belongsToMany('App\project_detail');
     }
+    public function verifyUser()
+    {
+        return $this->hasOne('App\VerifyUser');
+    }
 }
