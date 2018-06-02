@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             'name' => config('app.adminName'),
             'email' => config('app.adminEmail'),
             'password' => bcrypt(config('app.adminPassword')),
+            'confirmed' => 1
         ]);
 
     }

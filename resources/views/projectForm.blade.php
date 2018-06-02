@@ -1,3 +1,8 @@
+
+@if(Auth::user()->email != config('app.adminEmail') )
+    <script> window.location.href = "{{ route('home', ['error' => 1]) }}";</script>
+    
+@endif
 @extends ('layouts.dashboard')
 @section('page_heading','Project Form')
 

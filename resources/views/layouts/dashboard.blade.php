@@ -60,10 +60,11 @@
                         <li {{ (Request::is('/home') ? 'class="active"' : '') }}>
                             <a href="{{ ('/home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        
+                        @if(Auth::user()->email == config('app.adminEmail') )
                         <li {{ (Request::is('*projectform') ? 'class="active"' : '') }}>
                             <a href="{{ ('projectForm') }}"><i class="fa fa-edit fa-fw"></i>Project Forms</a>
                         </li>
+                        @endif
                         <li {{ (Request::is('*minute') ? 'class="active"' : '') }}>
                             <a href="{{ ('minuteForm') }}"><i class="fa fa-edit fa-fw"></i> Minute Form</a>
                         </li>

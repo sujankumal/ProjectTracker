@@ -1,8 +1,13 @@
 @extends('layouts.dashboard')
 @section('page_heading','Dashboard')
+
 @section('section')
            
-            <!-- /.row -->
+      @if(app('request')->input('error')==1)
+        <div class="alert alert-danger">
+        <p>Sorry!! only access to admin.</p> 
+         </div>
+    @endif      <!-- /.row -->
     <div class="col-sm-12">
            
             <!-- /.row -->
@@ -11,6 +16,7 @@
                 
                 @section ('pane2_panel_title', '')
                 @section ('pane2_panel_body')
+                    
                     
                     <div class="row">
                         <span class="panel  col-lg-4" >
