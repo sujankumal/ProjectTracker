@@ -86,3 +86,30 @@ function authoQRPS() {
 
     });
 }
+function authoQRScanPS(){
+	// body...
+	var project_id = document.getElementById('project_id').value;
+	if (project_id == "") {
+		return;
+	}
+	$.ajax({
+        headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+        type: "POST",
+        url: '/checkPermisionProjectQRScan',
+        data: {pid:project_id} ,
+        success: function(resp) {
+            if (resp.checkPermisionProjectQRScan == 0 || resp.checkPermisionProjectQRScan == 1) {
+            }else{
+            	alert("Sorry!!! \nOnly Leader or Supervisor or Members of the project can perform this Tasks.\nPlease select appropriate project");
+                $("#project_id").val(null).trigger("change");
+            }
+            
+            console.log(resp.checkPermisionProjectQRScan+"resp from server");
+        },
+        error: function(jqXHR, textStatus, errorThrown) { 
+                console.log(JSON.stringify(jqXHR));
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+        }
+
+    });
+}

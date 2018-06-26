@@ -92,6 +92,29 @@ class QrController extends Controller
         return response()->json(['checkPermisionProjectQRGen' => 2]);
      }
 
+     public function checkPermisionProjectQRScan(Request $request)
+     {
+         # code...
+        $request_data = $request->All();
+        $project_id = $request_data['pid'];
+        $data = App\project_detail::select('leader_id','supervisor_id','member_idi','member_idii')->where('id',$project_id)->first();
+
+         if (Auth::user()->id == $data->leader_id) {
+             # leader
+            return response()->json(['checkPermisionProjectQRScan' => 0]);    
+         }elseif (Auth::user()->id == $data->supervisor_id) {
+             # code...
+            return response()->json(['checkPermisionProjectQRScan' => 1]);
+         }elseif (Auth::user()->id == $data->member_idi) {
+             # code...
+            return response()->json(['checkPermisionProjectQRScan' => 0]);
+         }elseif (Auth::user()->id == $data->member_idii) {
+             # code...
+            return response()->json(['checkPermisionProjectQRScan' => 1]);
+         }
+        return response()->json(['checkPermisionProjectQRScan' => 2]);
+     }
+
     /**
      * Store a newly created resource in storage.
      *
