@@ -113,3 +113,33 @@ function authoQRScanPS(){
 
     });
 }
+function authoPptPS(argument) {
+	// body...
+	var project_id = document.getElementById('project_id').value;
+	if (project_id == "") {
+		return;
+	}
+	$.ajax({
+        headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+        type: "POST",
+        url: '/checkPermisionProjectPPT',
+        data: {pid:project_id} ,
+        success: function(resp) {
+            if (resp.checkPermisionProjectPPT == 0 || resp.checkPermisionProjectPPT == 1) {
+            }else{
+            	alert("Sorry!!! \nOnly Leader or Supervisor of the project can perform this Tasks.\nPlease select appropriate project");
+                $("#project_id").val(null).trigger("change");
+            }
+            
+            console.log(resp.checkPermisionProjectPPT+"resp from server");
+        },
+        error: function(jqXHR, textStatus, errorThrown) { 
+                console.log(JSON.stringify(jqXHR));
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+        }
+
+    });
+}
+function pptUploadProjectSelected(){
+	// body...
+}

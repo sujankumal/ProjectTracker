@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App;
 use DB;
+use App\project_detail;
+use Auth;
 class PowerpointController extends Controller
 {
     /**
@@ -20,7 +22,22 @@ class PowerpointController extends Controller
     {
         //
     }
+    public function checkPermisionProjectPPT(Request $request)
+    {
+        # code...
+        $request_data = $request->All();
+        $project_id = $request_data['pid'];
+        $data = App\project_detail::select('leader_id','supervisor_id')->where('id',$project_id)->first();
 
+         if (Auth::user()->id == $data->leader_id) {
+             # leader
+            return response()->json(['checkPermisionProjectPPT' => 0]);    
+         }elseif (Auth::user()->id == $data->supervisor_id) {
+             # code...
+            return response()->json(['checkPermisionProjectPPT' => 1]);
+         }
+        return response()->json(['checkPermisionProjectPPT' => 2]);
+    }
     /**
      * Show the form for creating a new resource.
      *

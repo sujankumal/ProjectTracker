@@ -11,10 +11,11 @@
                         {{ session()->get('pptUpload') }}
                     </div>
                 @endif
-                <div class="form-group{{ $errors->has('project_id') ? ' has-error' : '' }}">
+               <script src="{{ asset("js/autho.js")}}" type="text/javascript"></script>
+                 <div class="form-group{{ $errors->has('project_id') ? ' has-error' : '' }}">
                     <label for="project_id" class="col-md-4 control-label">Project Name</label>
                     <div class="col-md-6">
-                        <select id="project_id" name ="project_id" class="form-control" onchange="pptUploadProjectSelected()" required>
+                        <select id="project_id" name ="project_id" class="form-control" onchange="pptUploadProjectSelected();authoPptPS();" required>
                             <option value=""></option>
                             @foreach(App\project_detail::all() as $project)
                                 <option value="{{$project->id}}">{{$project->name}}</option>
