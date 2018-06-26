@@ -12,10 +12,11 @@
                         {{ session()->get('messageMinuteCreate') }}
                     </div>
                 @endif
+                <script src="{{ asset("js/autho.js")}}" type="text/javascript"></script>
                 <div class="form-group{{ $errors->has('project_id') ? ' has-error' : '' }}">
                     <label for="project_id" class="col-md-4 control-label">Project Name</label>
                     <div class="col-md-6">
-                        <select id="project_id" name ="project_id" class="form-control" onchange="projectSelected()">
+                        <select id="project_id" name ="project_id" class="form-control" onchange="projectSelected();authoMFPS();">
                             <option value=""></option>
                             @foreach(App\project_detail::all() as $project)
                                 <option value="{{$project->id}}">{{$project->name}}</option>
@@ -26,20 +27,7 @@
                         @endif
                     </div>
                 </div>
-                <!-- <div class="form-group{{ $errors->has('progress_percentage') ? ' has-error' : '' }}">
-                    <label for="progress_percentage" class="col-md-4 control-label">Progress %</label>
-                    <div class="col-md-6">
-                        <select id="progress_percentage" name ="progress_percentage" class="form-control" required>
-                            <option value=""></option>
-                            @for($i=5;$i<=100;$i=$i+5)
-                                <option value="{{$i}}">{{$i}}</option>
-                            @endfor
-                        </select>
-                        @if ($errors->has('progress_percentage'))
-                            <span class="help-block"><strong>{{ $errors->first('progress_percentage') }}</strong></span>
-                        @endif
-                    </div>
-                </div> -->
+                
 
                 <div class="form-group{{ $errors->has('agenda') ? ' has-error' : '' }}">
                     <label for="agenda" class="col-md-4 control-label">Agenda</label>

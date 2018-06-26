@@ -33,7 +33,7 @@ Route::get('/tasks', function () {
 Route::post('/projectTaskCreate','ProjectTasksController@store');
 Route::post('/projectTaskDelete','ProjectTasksController@delete');
 Route::post('/projectTaskShowMinute','ProjectTasksController@displayTaskForMinute');
-
+Route::post('/checkPermisionMinute', 'ProjectTasksController@checkPermisionMinute');
 
 Route::get('passwordchange', function () {
     return view('passChange');
