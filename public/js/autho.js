@@ -46,11 +46,38 @@ function authoPTaskSC() {
         success: function(resp) {
             if (resp.checkPermisionMinuteResponse == 0 || resp.checkPermisionMinuteResponse == 1) {
             }else{
-            	alert("Sorry!!! Only Leader or Supervisor of the project can Create Minute");
+            	alert("Sorry!!! Only Leader or Supervisor of the project can Update/Add Tasks");
                 $("#projID").val(null).trigger("change");
             }
             
             console.log(resp.checkPermisionMinuteResponse+"resp from server");
+        },
+        error: function(jqXHR, textStatus, errorThrown) { 
+                console.log(JSON.stringify(jqXHR));
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+        }
+
+    });
+}
+function authoQRPS() {
+	// body...
+	var project_id = document.getElementById('project_id').value;
+	if (project_id == "") {
+		return;
+	}
+	$.ajax({
+        headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+        type: "POST",
+        url: '/checkPermisionProjectQRGen',
+        data: {pid:project_id} ,
+        success: function(resp) {
+            if (resp.checkPermisionProjectQRGen == 1) {
+            }else{
+            	alert("Sorry!!! Only Head of the project can Generate QR");
+                $("#project_id").val(null).trigger("change");
+            }
+            
+            console.log(resp.checkPermisionProjectQRGen+"resp from server");
         },
         error: function(jqXHR, textStatus, errorThrown) { 
                 console.log(JSON.stringify(jqXHR));

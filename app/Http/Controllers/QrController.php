@@ -8,6 +8,7 @@ use Endroid\QrCode\LabelAlignment;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Response\QrCodeResponse;
 use Auth;
+use App;
 use App\qr;
 use App\project_detail;
 use Illuminate\Support\Facades\Validator;
@@ -75,6 +76,20 @@ class QrController extends Controller
            // $response = new QrCodeResponse($qrCode);
            // dd($response);
             return Redirect::back()->with('qrfilename', $file_name);
+     }
+
+     public function checkPermisionProjectQRGen(Request $request)
+     {
+         # code...
+        $request_data = $request->All();
+        $project_id = $request_data['pid'];
+        $data = App\project_detail::select('head_id')->where('id',$project_id)->first();
+
+         if (Auth::user()->id == $data->head_id) {
+             # head
+            return response()->json(['checkPermisionProjectQRGen' => 1]);    
+         }
+        return response()->json(['checkPermisionProjectQRGen' => 2]);
      }
 
     /**

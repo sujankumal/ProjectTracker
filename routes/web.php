@@ -35,7 +35,7 @@ Route::post('/projectTaskDelete','ProjectTasksController@delete');
 Route::post('/projectTaskShowMinute','ProjectTasksController@displayTaskForMinute');
 Route::post('/checkPermisionMinute', 'ProjectTasksController@checkPermisionMinute');
 Route::post('/checkPermisionProjectTask','ProjectTasksController@checkPermisionMinute');
-
+Route::post('/checkPermisionProjectQRGen','QrController@checkPermisionProjectQRGen');
 
 Route::get('passwordchange', function () {
     return view('passChange');
