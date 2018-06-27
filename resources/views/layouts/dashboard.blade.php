@@ -51,43 +51,43 @@
        
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li {{ (Request::is('/home') ? 'class="active"' : '') }}>
+                    <ul class="nav list-group" id="side-menu">
+                        <li class="{{(Request::is('*profile') ? 'active' : '') }}">
                             <a href="{{ route('profile', ['user' => Auth::user()->name,'value' => Auth::id()]) }}">
                                 <i class="fa fa-user fa-fw"></i>
                                 {{ Auth::user()->name }} </a>
                         </li>
-                        <li {{ (Request::is('/home') ? 'class="active"' : '') }}>
+                        <li class="{{ (Request::is('*home') ? 'active' : '') }}">
                             <a href="{{ ('/home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         @if(Auth::user()->email == config('app.adminEmail') )
-                        <li {{ (Request::is('*projectform') ? 'class="active"' : '') }}>
+                        <li class="{{(Request::is('*projectForm') ? 'active' : '') }}">
                             <a href="{{ ('projectForm') }}"><i class="fa fa-edit fa-fw"></i>Project Forms</a>
                         </li>
                         @endif
-                        <li {{ (Request::is('*minute') ? 'class="active"' : '') }}>
+                        <li class="{{(Request::is('*minuteForm') ? 'active' : '') }}">
                             <a href="{{ ('minuteForm') }}"><i class="fa fa-edit fa-fw"></i> Minute Form</a>
                         </li>
-                        <li {{ (Request::is('*tasks') ? 'class="active"' : '') }}>
+                        <li class="{{(Request::is('*tasks') ? 'active' : '') }}">
                                 <a href="{{ ('tasks') }}"><i class="fa fa-edit fa-fw"></i>Project tasks Add</a>
                             </li>
-                        <li {{ (Request::is('*QR') ? 'class="active"' : '') }}>
+                        <li class="{{(Request::is('*QR') ? 'active' : '') }}">
                             <a href="{{ ('QR') }}"><i class="glyphicon glyphicon-qrcode"></i> QR Generate</a>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li {{ (Request::is('*QRScan') ? 'class="active"' : '') }}>
+                        <li class="{{(Request::is('*QRScan') ? 'active' : '') }}">
                             <a href="{{ ('QRScan') }}"><i class="fa fa-scanner"></i><i class="glyphicon glyphicon-search"></i> Scan QR</a>
                         </li>
-                        <li {{ (Request::is('*uploadppt') ? 'class="active"' : '') }}>
+                        <li class="{{(Request::is('*uploadppt') ? 'active' : '') }}">
                             <a href="{{ ('uploadppt') }}"><i class="fa fa-upload" aria-hidden="true"></i> Upload Presentaion file</a>
                         </li>
-                        <li {{ (Request::is('*notifications') ? 'class="active"' : '') }}>
+                        <li class="{{(Request::is('*notifications') ? 'active' : '') }}">
                             <a href="{{ ('notifications') }}"><i class="fa fa-bell" aria-hidden="true"></i> Create Notice </a>
                         </li>
                         
                         
-                        <li {{ (Request::is('*documentation') ? 'class="active"' : '') }}>
-                            <a href="{{ ('') }}"><i class="fa fa-file-word-o fa-fw"></i> About</a>
+                        <li class="{{(Request::is('*about') ? 'active' : '') }}">
+                            <a href="{{ ('about') }}"><i class="fa fa-file-word-o fa-fw"></i> About</a>
                         </li>
                     </ul>
                 </div>

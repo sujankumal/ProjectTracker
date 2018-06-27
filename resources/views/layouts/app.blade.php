@@ -16,44 +16,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    
-    <style>
-            
-        body, html {
-        height: 100%;
-    }
-                    
-    .bg { 
-        /* The image used */
-        background-image: url("{{url('images/background-1.jpg')}}");
-
-        /* Full height */
-        height: 100%; 
-        
-        /* Center and scale the image nicely */
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }      
-    
-    #nav-login > li > a:hover,#nav-login > li > a:focus {
-        background-color:#D05623;
-    }
-    #brand-name:hover{
-        background-color:#D05623;
-    }           
-    </style>
-
+  
 </head>
 <body >
       
     <div id="app" style="height:100%">
-        <nav class="navbar  navbar-static-top orange-color white-text"  style="margin:0%">
+        <nav class="navbar  navbar-static-top blue-color white-text"  style="margin:0%">
             <div class="container">
-                <div class="navbar-header">
-
+                <div class="navbar-header ">
                     <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+                    <button type="button" class=" navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false" aria-controls="app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -73,28 +45,23 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right " id="nav-login">
+                    <ul class="nav navbar-nav navbar-right" id="nav-login">
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}" style="color:#fff;">Login</a></li>
                             <li><a href="{{ route('register') }}" style="color:#fff;">Register</a></li>
                         @else
-                            <li class="dropdown" >
+                            <li class="dropdown " >
                                 <a href="#" class="dropdown-toggle" style="color:#fff;" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                <ul class="dropdown-menu" id="logoutUl">
+                                    <li id="ulogoutl" class="">
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color:#fff;">
                                             Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
+                                    </form>
                                     </li>
                                 </ul>
                             </li>
@@ -109,7 +76,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="container-fluid bg-4 text-center navbar-fixed-bottom orange-color white-text" style="margin:0%">
+        <footer class="container-fluid bg-4 text-center navbar-static-bottom blue-color white-text" style="margin:0%">
             <p>ProjectTracker © 2018</p> 
         </footer>
     </div>

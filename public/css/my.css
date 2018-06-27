@@ -1,10 +1,16 @@
 .orange-color{
                 background-color: #FE5623;
 }
-
+.blue-color{
+	background-color: #3598DC;
+}
 .white-text{
    color: #fff;
 }
+body, html {
+    height: 100%;
+}
+
 
 #v {
     width: 320px; 
@@ -12,4 +18,28 @@
 }
 .minuteCheckbox{
 	margin: 5px;
+}
+#nav-login > li > a:hover,#nav-login > li > a:focus {
+        background-color:#3578ff;
+}
+#brand-name:hover{
+        background-color:#3578ff;
+}
+#logoutUl{
+ 	background-color: #3578ff;
+}
+#ulogoutl > a:hover, #ulogoutl > a:focus{
+	background-color: #3598DC;
+} 
+.bg{ 
+	background: transparent url("../images/background-1.jpg") left top;
+	height: 100%;
+	background-size: 100% 100%; 
+	background-attachment: fixed;
+    
+ }  
+ .icon-bar{ background-color: #fff;}
+#welcomeHeader>h3:hover{
+	color:#406F31;
+	text-decoration: none;
 }

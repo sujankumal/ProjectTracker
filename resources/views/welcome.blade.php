@@ -3,7 +3,7 @@
 @section('content')
 <div class="container ">
   <div class="container-fluid bg-1 text-center " >
-    <a href="{{url('home')}}"><h3 class="margin white-text">WELCOME</h3></a>
+    <a href="{{url('home')}}" id="welcomeHeader" style="text-decoration: none;"><h3 class="margin white-text" >WELCOME</h3></a>
     <img src="{{url('images/project tracker.png')}}" class="img img-responsive img-thumbnail margin" style="display:inline; background:transparent; border:none;" alt="Project Tracker" width="350" height="350">
     
   </div>
