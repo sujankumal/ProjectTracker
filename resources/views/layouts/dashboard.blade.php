@@ -4,54 +4,49 @@
  <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-static-top orange-color white-text" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-static-top blue-color white-text" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#side-menu">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" id="brand-name" href="{{ ('/') }}" style="color:#fff;">{{ config('app.name', 'Laravel') }}</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right" id="nav-login">
-                <li class="dropdown">
-                    <a class="dropdown-toggle white-text" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw" ></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user" >
-
-                        @guest
-                            <li><a href="{{ route('login') }}" style="color:#fff;">Login</a></li>
-                            <li><a href="{{ route('register') }}" style="color:#fff;">Register</a></li>
-                        @else
-                            
+                <span id="nav-login" class="nav navbar navbar-toggle navbar-right" >
+                        <a class="dropdown-toggle white-text" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw" ></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user" >
+                            @guest
+                                <li><a href="{{ route('login') }}" style="color:#fff;">Login</a></li>
+                                <li><a href="{{ route('register') }}" style="color:#fff;">Register</a></li>
+                            @else
                                 <li><a href="#"><i class="fa fa-user fa-fw"></i>{{ Auth::user()->name }} </a>
                                 </li>
-                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                                </li>
+                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
                                 <li class="divider"></li>
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                        @endguest
-                    </ul>
-                </li>
-            </ul>
-            <!-- /.navbar-top-links -->
-       
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav list-group" id="side-menu">
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                    Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            @endguest
+                        </ul>
+                       
+                </span>
+
+              </div>
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            </div>
+            <div class="navbar-default sidebar opag" role="navigation">
+               <div class=" sidebar-nav navbar-collapse opag" id="side-menu">
+                    <ul class="jumbotron nav list-group" id="side-menu">
                         <li class="{{(Request::is('*profile') ? 'active' : '') }}">
                             <a href="{{ route('profile', ['user' => Auth::user()->name,'value' => Auth::id()]) }}">
                                 <i class="fa fa-user fa-fw"></i>
@@ -96,19 +91,16 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
-			 <div class="row">
+        <div id="page-wrapper"  style="background-color: transparent;  border: none;">
+			<div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">@yield('page_heading')</h1>
+                    <h1 class="page-header white-text">@yield('page_heading')</h1>
                 </div>
-                <!-- /.col-lg-12 -->
-        </div>
-
-			<div class="jumbotron row">  
+            </div>
+			<div class="" id = "dashboardSection">  
 				@yield('section')
 
             </div>
-            <!-- /#page-wrapper -->
         </div>
     
 </div>

@@ -2,7 +2,7 @@
 @section('page_heading','Dashboard')
 
 @section('section')
-<div>
+<div id="qrform" >
 	<form id = "QRForm" class="form-horizontal" method="POST" action="/QRCreate">
 		{{ csrf_field() }}
 		 @if(session()->has('qrfilename'))
@@ -14,7 +14,7 @@
           @endif
           <script src="{{ asset("js/autho.js")}}" type="text/javascript"></script>
           <div class="form-group{{ $errors->has('project_id') ? ' has-error' : '' }}">
-                    <label for="project_id" class="col-md-4 control-label">Project Name</label>
+                    <label for="project_id" class="col-md-4 control-label white-text">Project Name</label>
                     <div class="col-md-6">
                         <select id="project_id" name ="project_id" class="form-control" onchange="authoQRPS();">
                             <option value=""></option>

@@ -1,8 +1,10 @@
 .orange-color{
-                background-color: #FE5623;
+                /*background-color: #FE5623;*/
+                background-color: #00ff00;
 }
 .blue-color{
-	background-color: #3598DC;
+	/*background-color: #3598DC;*/
+	background-color: #5C994A;
 }
 .white-text{
    color: #fff;
@@ -32,14 +34,44 @@ body, html {
 	background-color: #3598DC;
 } 
 .bg{ 
-	background: transparent url("../images/background-1.jpg") left top;
+	/*background: transparent url("../images/background-1.jpg") left top;*/
+	background:transparent linear-gradient(to bottom, #5C914A 0%, #47a3a1 100%);
 	height: 100%;
 	background-size: 100% 100%; 
 	background-attachment: fixed;
     
  }  
+ .bg a{
+ 	color: brown;
+ }
  .icon-bar{ background-color: #fff;}
 #welcomeHeader>h3:hover{
 	color:#406F31;
 	text-decoration: none;
+}
+#nav-login{
+	display: block;
+	float: right;
+}
+#side-menu{
+	 background: transparent;
+}
+#qrform{
+	background:transparent; 
+}
+#dashboardSection a{
+	/*color: #0853cd;*/
+	color: brown;
+}
+#dashboardSection a :hover{
+	/*background-color: white;*/
+}
+#side-menu a:hover {
+	background-color: #5C994A;
+}
+.opag{
+	background: rgba(205,255,205,0.4) ;
+}
+#imageChange{
+	margin-bottom: 20px;
 }
