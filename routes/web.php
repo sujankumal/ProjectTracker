@@ -38,7 +38,7 @@ Route::post('/checkPermisionProjectTask','ProjectTasksController@checkPermisionM
 Route::post('/checkPermisionProjectQRGen','QrController@checkPermisionProjectQRGen');
 Route::post('/checkPermisionProjectQRScan','QrController@checkPermisionProjectQRScan');
 Route::post('/checkPermisionProjectPPT','PowerpointController@checkPermisionProjectPPT');
-
+Route::post('/changeBatch','ProjectDetailController@changeBatch');
 
 Route::get('passwordchange', function () {
     return view('passChange');

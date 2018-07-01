@@ -140,6 +140,35 @@
                 </h4>
                 <a href="/passwordchange"> Change Password!!</a>
             </div>
+
+            @if(session()->has('changeBatch'))
+                  <div class="alert alert-success">
+                        {{ session()->get('changeBatch') }}
+                  </div>
+            @endif
+            @if(Auth::user()->batch == null && Auth::user()->email != config('app.adminEmail'))
+              <div class="white-text" style=" border: none;">
+                <h4>
+                  Your Batch is not set. Please Select your Batch!!!
+                </h4>
+                <form id="changeBatch" class="form-horizontal" method="POST" action="/changeBatch">
+                        {{ csrf_field() }}
+                  <div class="form-group{{ $errors->has('changeBatch') ? ' has-error' : '' }}">
+                      <label for="changeBatch" class="col-md-4 control-label">Select Batch&nbsp; &nbsp;<span class="glyphicon glyphicon-calendar"></span></label>
+                       <div class="col-md-6 " style="margin-top:5px;">
+                          <select id="changeBatch" name ="changeBatch" class="form-control">
+                            <option value=""></option>
+                            @for($i=2010;$i<=date('Y');$i++)
+                              <option value="{{$i}}">{{$i}}</option>
+                            @endfor
+                          </select>   
+                      </div>
+                      <button type="submit" id="changeBatch" class="btn btn-md btn-success" form="changeBatch">Submit</button>
+                  </div>
+                </form>
+              </div>
+            
+            @endif
             <hr>
             <div class="white-text" style=" border: none;">
               <h4>Do you want to change Profile Photo?</h4>

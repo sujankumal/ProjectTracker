@@ -9,24 +9,14 @@
          </div>
     @endif      <!-- /.row -->
     <div class="col-sm-12">
-           
-            <!-- /.row -->
-            <div class="row">
+            
                 <div class="col-lg-8">
-                
-                @section ('pane2_panel_title', '')
-                @section ('pane2_panel_body')
-                    
-                    
-                    <div class="row">
-                        <span class="panel  col-lg-4" >
-                                <div class="heading">
-                                    <h4 class="title">List of Projects</h4>
-                                </div>
-                                <div class="">
-                                    <div class="container-fluid bg-2 text-center">
-                                      <div>
-                                        <ol>
+                    <div class="container-fluid panel white-text opag col-lg-5">
+                            <div class="heading">
+                                <h4 class="title">List of Projects</h4>
+                            </div>
+                            <div class="container-fluid bg-2 text-center">
+                                    <ol>
                                         @foreach(App\project_detail::select('id','name')->get() as $project)
                                             <!-- <a href="{{url('/aboutProject')}}"> -->
                                                 <a href="{{ route('aboutProject', ['project' => $project->name,
@@ -35,18 +25,15 @@
                                             </a>
                                         @endforeach
                                          </ol>
-                                      </div>
-                                    </div>
-                                </div>
-                            </span>
-                            <span class="panel col-lg-4">
-                                <div class="heading">
+                                      
+                            </div>
+                          </div>
+                    <div class="container-fluid panel white-text opag col-lg-5 col-lg-offset-1">     
+                            <div class="heading">
                                     <h4 class="title">List of Users</h4>
-                                </div>
-                                <div class="">
-                                    <div class="container-fluid bg-2 ">
-                                      <div>
-                                        <ol>
+                            </div>
+                            <div class="container-fluid bg-2 ">
+                                     <ol>
                                         @foreach(App\User::all() as $user)
                                          <li> 
                                             <i class="fa fa-user fa-fw "></i>
@@ -56,20 +43,14 @@
                                         </li>
                                         @endforeach
                                          </ol>
-                                      </div>
-                                    </div>
+                                   
                                 </div>
-                            </span>
                     </div>
-                            
-                @endsection
-            @include('widgets.panel', array('header'=>true, 'as'=>'pane2'))
-         </div>
-         <div class="row col-lg-4">
-                <div class="panel container-fluid jumbotron">
-                        <div class="heading"><h3 class="title">Notification</h3>
-                        </div>
-                         <ol>
+             </div>
+         <div class="container-fluid panel white-text opag col-lg-4">
+              <div class="heading"><h3 class="title">Notification</h3>
+            </div>
+                <ol>
                             @foreach(App\notice::all() as $notice)
                                 <li> 
                                     <i class="fa fa-bell "></i>&nbsp&nbsp&nbsp
@@ -80,11 +61,8 @@
                                 </li>
                             @endforeach
                          </ol>
-                               
-                    </div>
          </div>
-                <!-- /.col-lg-8 -->
-    </div>
+        
     </div>            
                 <!-- /.col-lg-4 -->     
 @stop

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App;
+use DB;
+use Auth;
 use Illuminate\View\View;
 use function PHPSTORM_META\type;
 
@@ -65,6 +67,19 @@ class ProjectDetailController extends Controller
             ]);
         return Redirect::back()->with('message','Project Added!!');
          // return redirect()->route('home');
+    }
+
+    public function changeBatch(Request $request)
+    {
+        # code...
+        $request_data = $request->All();
+        $change_batch = $request_data['changeBatch'];
+        if (isset($change_batch) && $change_batch != null) {
+           DB::table('users')->where('id', Auth::user()->id)->update(['batch' => $change_batch]);
+           return Redirect::back()->with('changeBatch','Batch Changed! ');
+        }else{
+            return Redirect::back()->with('changeBatch','Batch not Changed! '.$change_batch);
+        }
     }
 
     /**

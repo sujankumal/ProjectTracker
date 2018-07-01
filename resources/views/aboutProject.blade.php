@@ -22,8 +22,9 @@
                     $b = App\User::select('name')->where('id', $result->member_idii);
                     ($b->count())?$memberIIName=$b->first()->name:"" ;
                     ?>
-                    <div class="container jumbotron">
-                        <div class="col-lg-8 panel panel-default">
+                    <div class="">
+                        <div class="container-fluid panel white-text opag col-lg-5">
+                            <br>
                              <p>Name: {{$result->name}}</p>
                              <p>Type: 
                                 @if($result->type == 0)
@@ -40,8 +41,9 @@
                              <p>Project Leader: {{$leaderName}}</p>
                              <p>Project Member: {{$memberIName}}</p>
                              <p>Project Member: {{$memberIIName}}</p>
+                              <br>
                         </div>
-                         <div class="col-lg-4 panel panel-default" >
+                         <div class="container-fluid panel white-text opag col-lg-5 col-lg-offset-1" >
                             <p>Project Task List</p>
                             <ul style="height:250px;  overflow:hidden; overflow-y:scroll;">
                             <?php 
@@ -72,7 +74,7 @@
                             </ul>
                          </div>
                      </div>
-                     <div id="minuteDisplay"style="height:250px;  overflow:hidden; overflow-y:scroll;">
+                     <div class="container-fluid panel white-text opag col-lg-5 " id="minuteDisplay" style="height:250px;  overflow:hidden; overflow-y:scroll;">
                         <caption >Minutes</caption>
                         <table id="minuteTable" class="table ">
                           <thead>
@@ -102,8 +104,10 @@
                         </table>
                         
                      </div>
-                     <div id="pptdisplay">
+                     <div id="pptdisplay" class="container-fluid panel white-text opag col-lg-5 col-lg-offset-1">
+                      <br>
                       <p>List of Presentation</p>
+                      <br>
                        <ol>
                          @foreach(App\Powerpoint::select('id', 'powerpoint')->where('project_id',app('request')->input('param'))->get() as $res)
                             <!-- <a href="{{ route('showPPT', ['project' => $result->name,'param' => $res->id]) }}"><li>{{substr($res->powerpoint,11)}}</li></a> -->
@@ -111,9 +115,11 @@
                          @endforeach
                        </ol>
                      </div>
-                     <div class="panel panel-default">
+                     <div class="container-fluid panel white-text opag col-lg-5 col-lg-offset-1"">
                        
-                         <div id="piechart"></div>
+                         <div id="piechart" >
+                           
+                         </div>
                             <script type="text/javascript">
                             // Load google charts
                             google.charts.load('current', {'packages':['corechart']});
@@ -135,6 +141,7 @@
                                 'width':500,
                                 'height':400,
                                 is3D:true,
+                                backgroundColor:'transparent',
                                 slices: {
                                     0: { color: 'red' },
                                     1: { color: '#AABB12' },
