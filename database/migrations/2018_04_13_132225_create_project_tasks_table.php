@@ -17,7 +17,7 @@ class CreateProjectTasksTable extends Migration
             $table->increments('id');
             $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('project_details');
-            $table->string('task')->unique();
+            $table->string('task');
             $table->integer('task_complete')->nullable();
             $table->timestamps();
         });

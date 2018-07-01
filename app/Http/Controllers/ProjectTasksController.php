@@ -64,17 +64,29 @@ class ProjectTasksController extends Controller
         if (is_null($task)) {
             return response()->json(['taskAddMessage' => 1]); // message 1 = task empty 
         }
-        try{
+        //check if task already available for the selected project only
+        $task_duplicate_Result = App\project_task::select('task')->where([
+            ['project_id',$project_id],
+            ['task', $task],
+        ])->first();
+        if ($task_duplicate_Result['task'] == null) {
+            // null means duplicate not found its safe to add
+            try{
             $success = project_task::create([
                 'project_id'=> $project_id,
                 'task'=>$task,
             ]);
-        } catch (\Exception $e){
-            
+            } catch (\Exception $e){
+                
+                return response()->json(['taskAddMessage' => 3]); // message 3 =  failed to add data
+            }    
+        }else{
             return response()->json(['taskAddMessage' => 3]); // message 3 =  failed to add data
         }
-            return response()->json(['taskAddMessage' => 2]); // message 2 = task empty
+
+        return response()->json(['taskAddMessage' => 2]); // message 2 = task empty
     }
+
     public function checkPermisionMinute(Request $request)
     {
         # code...
@@ -95,8 +107,13 @@ class ProjectTasksController extends Controller
     public function delete(Request $request){
         $request_data = $request->All();
         $taskDelete = $request_data['task'];
+        $project_id = $request_data['pid'];
+        //delete task of only the selected project
         try{
-            DB::table('project_tasks')->where('task', '=', $taskDelete)->delete();
+            DB::table('project_tasks')->where([
+                ['project_id',$project_id],
+                ['task', '=', $taskDelete],
+            ])->delete();
         }catch(\Exception $e){
             return response()->json(['taskDelMessage' => 200]); // message 100 = task deleted error
         }

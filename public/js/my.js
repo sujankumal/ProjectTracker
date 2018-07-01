@@ -24,11 +24,12 @@ function tselectionChange(){
                 btn.appendChild(bname);
                 btn.onclick=function(){
                     console.log(this.value);
+                    var p_id = document.getElementById('projID').value;
                     $.ajax({
                         headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
                         type: "POST",
                         url: '/projectTaskDelete',
-                        data: {task:this.value} ,
+                        data: {pid:p_id, task:this.value} ,
                         success: function(resp) {
                             if (resp.taskDelMessage == 100) {
                                 document.getElementById('messageDisp').innerHTML = "task deleted";
