@@ -13,22 +13,31 @@
                     </div>
                 @endif
                 <script src="{{ asset("js/autho.js")}}" type="text/javascript"></script>
-                <div class="form-group{{ $errors->has('project_id') ? ' has-error' : '' }}">
+                
+                @if(session()->has('sidebarProjectSelectedResponsePID'))
+                    
+                    <div class="form-group{{ $errors->has('project_id') ? ' has-error' : '' }}">
                     <label for="project_id" class="col-md-4 control-label">Project Name</label>
                     <div class="col-md-6">
                         <select id="project_id" name ="project_id" class="form-control" onchange="projectSelected();authoMFPS();">
-                            <option value=""></option>
-                            @foreach(App\project_detail::all() as $project)
+                           <script type="text/javascript"> 
+                            $(document).ready(function() {
+                                    projectSelected();
+                                    authoMFPS();
+                                });
+                           </script>
+                            <option value=" {{ session()->get('sidebarProjectSelectedResponsePID') }} ">{{session()->get('sidebarProjectSelectedResponseCP')}}</option>
+                            <!-- @foreach(App\project_detail::all() as $project)
                                 <option value="{{$project->id}}">{{$project->name}}</option>
-                            @endforeach
+                            @endforeach -->
                         </select>
                         @if ($errors->has('project_id'))
                             <span class="help-block"><strong>{{ $errors->first('project_id') }}</strong></span>
                         @endif
                     </div>
-                </div>
+                    </div>
+                @endif
                 
-
                 <div class="form-group{{ $errors->has('agenda') ? ' has-error' : '' }}">
                     <label for="agenda" class="col-md-4 control-label">Agenda</label>
                     <div class="col-md-6">

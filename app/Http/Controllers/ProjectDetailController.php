@@ -151,4 +151,38 @@ class ProjectDetailController extends Controller
             'projectMember2' => 'nullable|numeric|max:255',
         ],$messages)->validate();
     }
+    public function sidebarProjectSelected(Request $request)
+    {
+        # code...
+        $data = $request->all();
+        $project_id = $data['pid'];
+        $result = App\project_detail::select('name','head_id','supervisor_id','leader_id')->where('id',$project_id)->first();
+        if (Auth::user()->id == $result->head_id) {
+            if (Auth::user()->id == $result->supervisor_id) {
+                $request->session()->put('sidebarProjectSelectedResponse', 1);
+                $request->session()->put('sidebarProjectSelectedResponseCP', $result->name);
+                $request->session()->put('sidebarProjectSelectedResponsePID', $project_id);
+                return response()->json(['sidebarProjectSelectedResponse' =>  1]);// is head and supervisor    
+            }
+            $request->session()->put('sidebarProjectSelectedResponse', 2);
+            $request->session()->put('sidebarProjectSelectedResponseCP', $result->name);
+            $request->session()->put('sidebarProjectSelectedResponsePID', $project_id);
+            return response()->json(['sidebarProjectSelectedResponse' =>  2]); //is head    
+        }else if (Auth::user()->id == $result->supervisor_id) {
+            $request->session()->put('sidebarProjectSelectedResponse', 3);
+            $request->session()->put('sidebarProjectSelectedResponseCP', $result->name);
+            $request->session()->put('sidebarProjectSelectedResponsePID', $project_id);
+            return response()->json(['sidebarProjectSelectedResponse' =>  3]); // is supervisor   
+        }else if (Auth::user()->id == $result->leader_id) {
+            $request->session()->put('sidebarProjectSelectedResponse', 4);
+            $request->session()->put('sidebarProjectSelectedResponseCP', $result->name);
+            $request->session()->put('sidebarProjectSelectedResponsePID', $project_id);
+            return response()->json(['sidebarProjectSelectedResponse' =>  4]); // is leader   
+        }
+        // return Redirect::back()->with('sidebarProjectSelectedResponse', 0);
+        $request->session()->put('sidebarProjectSelectedResponse', 0);
+        $request->session()->put('sidebarProjectSelectedResponseCP', $result->name);
+        $request->session()->put('sidebarProjectSelectedResponsePID', $project_id);
+        return response()->json(['sidebarProjectSelectedResponse' =>  0]); //error! not head supervisor or leader
+    }
 }

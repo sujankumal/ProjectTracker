@@ -198,3 +198,22 @@ function createNewCheckbox(name, id){
     checkbox.id = id;
     return checkbox;
 }
+function sidebarProjectSelect() {
+    // body...
+    
+    var p_id = document.getElementById('side_project_id').value;
+    $.ajax({
+        headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+        type: "POST",
+        url: '/sidebarProjectSelected',
+        data: {pid:p_id} ,
+        success: function(resp) {
+           location.reload();
+        },
+        error: function(jqXHR, textStatus, errorThrown) { 
+                console.log(JSON.stringify(jqXHR));
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+        }
+
+    });
+}
