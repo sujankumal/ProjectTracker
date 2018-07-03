@@ -18,7 +18,7 @@
                     </ol>
                   </div>
                 <script src="{{ asset("js/autho.js")}}" type="text/javascript"></script>
-                  <div class="form-group{{ $errors->has('projID') ? ' has-error' : '' }}">
+                 <!--  <div class="form-group{{ $errors->has('projID') ? ' has-error' : '' }}">
                     <label for="enteredTask" class="col-md-4 control-label">Project</label>
                     <div class="col-md-6">
                        <select id="projID" name ="projID" onchange="tselectionChange(); authoPTaskSC();" class="form-control" required >
@@ -31,7 +31,31 @@
                             <span class="help-block"><strong>{{ $errors->first('projID') }}</strong></span>
                         @endif
                     </div>
-                </div>
+                </div> -->
+                @if(session()->has('sidebarProjectSelectedResponsePID'))
+                    
+                    <div class="form-group{{ $errors->has('projID') ? ' has-error' : '' }}">
+                    <label for="enteredTask" class="col-md-4 control-label">Project Name</label>
+                    <div class="col-md-6">
+                        <select id="projID" name ="projID" class="form-control" onchange="tselectionChange(); authoPTaskSC();">
+                           <script type="text/javascript"> 
+                            $(document).ready(function() {
+                                    tselectionChange(); 
+                                    authoPTaskSC();
+                                });
+                           </script>
+                            <option value=" {{ session()->get('sidebarProjectSelectedResponsePID') }} ">{{session()->get('sidebarProjectSelectedResponseCP')}}</option>
+                            <!-- @foreach(App\project_detail::all() as $project)
+                                <option value="{{$project->id}}">{{$project->name}}</option>
+                            @endforeach -->
+                        </select>
+                        @if ($errors->has('projID'))
+                            <span class="help-block"><strong>{{ $errors->first('projID') }}</strong></span>
+                        @endif
+                    </div>
+                    </div>
+                @endif
+                
 
                 <div class="form-group{{ $errors->has('enteredTask') ? ' has-error' : '' }}">
                     <label for="enteredTask" class="col-md-4 control-label">Enter Task</label>

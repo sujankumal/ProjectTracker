@@ -102,18 +102,9 @@
                                 </li>    
                             @elseif(session()->get('sidebarProjectSelectedResponse') == 2)
                             <!-- head -->
-                                <li class="{{(Request::is('*minuteForm') ? 'active' : '') }}">
-                                <a href="{{ ('minuteForm') }}"><i class="fa fa-edit fa-fw"></i> Minute Form</a>
-                                </li>
-                                <li class="{{(Request::is('*tasks') ? 'active' : '') }}">
-                                        <a href="{{ ('tasks') }}"><i class="fa fa-edit fa-fw"></i>Project tasks Add</a>
-                                </li>
                                 <li class="{{(Request::is('*QR') ? 'active' : '') }}">
                                     <a href="{{ ('QR') }}"><i class="glyphicon glyphicon-qrcode"></i> QR Generate</a>
                                     <!-- /.nav-second-level -->
-                                </li>
-                                <li class="{{(Request::is('*uploadppt') ? 'active' : '') }}">
-                                    <a href="{{ ('uploadppt') }}"><i class="fa fa-upload" aria-hidden="true"></i> Upload Presentaion file</a>
                                 </li>
                                 <li class="{{(Request::is('*notifications') ? 'active' : '') }}">
                                     <a href="{{ ('notifications') }}"><i class="fa fa-bell" aria-hidden="true"></i> Create Notice </a>

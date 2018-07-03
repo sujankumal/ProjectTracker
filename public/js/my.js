@@ -60,11 +60,20 @@ function tselectionChange(){
    
 }
 function submitClicked(){
-    tsendDataToController();
+    var check = tsendDataToController();
+    if (check == 0) {
+        location.reload();
+        return;
+    }
     tselectionChange();
 }
 function tsendDataToController() {
-    var p_id = document.getElementById('projID').value;
+    var p_id= null;
+    try{
+        p_id = document.getElementById('projID').value;
+    }catch(error){
+        return 0;
+    }
     var task = document.getElementById('enteredTask');
     $.ajax({
         headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
