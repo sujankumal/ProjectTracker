@@ -41,17 +41,28 @@
             </tbody>
         </table> 
                     <script src="{{ asset("js/autho.js")}}" type="text/javascript"></script>
-          
+                @if(session()->has('sidebarProjectSelectedResponsePID'))
+                    
+                    <div class="form-group{{ $errors->has('project_id') ? ' has-error' : '' }}">
                     <label for="project_id" class="col-md-4 control-label">Project Name</label>
                     <div class="col-md-6">
                         <select id="project_id" name ="project_id" class="form-control" onchange="load();authoQRScanPS();">
-                            <option value=""></option>
-                            @foreach(App\project_detail::all() as $project)
-                                <option value="{{$project->id}}">{{$project->name}}</option>
-                            @endforeach
+                           <script type="text/javascript"> 
+                            $(document).ready(function() {
+                                    load();
+                                    authoQRScanPS();
+                                });
+                           </script>
+                            <option value=" {{ session()->get('sidebarProjectSelectedResponsePID') }} ">{{session()->get('sidebarProjectSelectedResponseCP')}}</option>
+                           
                         </select>
                         <span id="project_id_error" class="form-group has-error help-block"></span>
+                        @if ($errors->has('project_id'))
+                            <span class="help-block"><strong>{{ $errors->first('project_id') }}</strong></span>
+                        @endif
                     </div>
+                    </div>
+                @endif
                   
     </div>
     <canvas id="qr-canvas" width="800" height="600" style="width: 320px;  height: 240px; display:none;"></canvas>
