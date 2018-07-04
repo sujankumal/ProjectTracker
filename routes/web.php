@@ -12,24 +12,31 @@
 */
 
 Auth::routes();
+
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware('auth');
+})->middleware('auth')->name('dashboard');
+
 Route::post('/projectCreate','ProjectDetailController@store');
+
 Route::post('/minuteCreate','MinuteController@store');
+
 Route::get('/check','ProjectDetailController@index')->middleware('auth');
+
 Route::get('/about', function () {
     return view('about');
-})->middleware('auth');
+})->middleware('auth')->name('about');
 
 Route::get('/tasks', function () {
     return view('projecttask');
-})->middleware('auth');
+})->middleware('auth')->name('tasks');
+
 Route::post('/projectTaskCreate','ProjectTasksController@store');
 Route::post('/projectTaskDelete','ProjectTasksController@delete');
 Route::post('/projectTaskShowMinute','ProjectTasksController@displayTaskForMinute');
@@ -39,7 +46,7 @@ Route::post('/checkPermisionProjectQRGen','QrController@checkPermisionProjectQRG
 Route::post('/checkPermisionProjectQRScan','QrController@checkPermisionProjectQRScan');
 Route::post('/checkPermisionProjectPPT','PowerpointController@checkPermisionProjectPPT');
 Route::post('/changeBatch','ProjectDetailController@changeBatch');
-Route::post('sidebarProjectSelected','ProjectDetailController@sidebarProjectSelected');
+Route::post('/sidebarProjectSelected','ProjectDetailController@sidebarProjectSelected');
 
 Route::get('passwordchange', function () {
     return view('passChange');
@@ -56,12 +63,14 @@ Route::get('auth/google/callback', 'Auth\AuthGoogleController@handleGoogleCallba
 
 Route::get('/QR', function () {
     return view('QR');
-})->middleware('auth');
+})->middleware('auth')->name('QR');
+
 Route::post('/QRCreate', 'QrController@create');
 
 Route::get('/QRScan', function () {
     return view('QRScan');
-})->middleware('auth');
+})->middleware('auth')->name('QRScan');
+
 Route::post('/QRstore', 'QrController@store');
 Route::post('/taskJSDyView','ProjectTasksController@index');
 // Route::get('/', function()
@@ -82,7 +91,7 @@ Route::get('/tables', function()
 Route::get('/forms', function()
 {
 	return View::make('form');
-})->middleware('auth');
+})->middleware('auth')->name('forms');
 
 Route::get('/grid', function()
 {
@@ -103,7 +112,7 @@ Route::get('/icons', function()
 Route::get('/panels', function()
 {
 	return View::make('panel');
-})->middleware('auth');
+})->middleware('auth')->name('panels');
 
 Route::get('/typography', function()
 {
@@ -114,7 +123,7 @@ Route::get('/typography', function()
 Route::get('/blank', function()
 {
 	return View::make('blank');
-})->middleware('auth');
+})->middleware('auth')->name('blank');
 
 // Route::get('/login', function()
 // {
@@ -124,25 +133,28 @@ Route::get('/blank', function()
 Route::get('/documentation', function()
 {
 	return View::make('documentation');
-})->middleware('auth');
+})->middleware('auth')->name('documentation');
 
 Route::get('/minuteForm', function()
 {
 	return View::make('minuteForm');
-})->middleware('auth');
+})->middleware('auth')->name('minuteForm');
 
 Route::get('/projectForm', function()
 {
 	return View::make('projectForm');
-})->middleware('auth');
+})->middleware('auth')->name('projectForm');
+
 Route::get('/aboutProject', function()
 {
 	return View::make('aboutProject');
 })->middleware('auth')->name('aboutProject');
+
 Route::get('/minuteCompleteDetails', function()
 {
 	return View::make('minuteCompleteDetails');
 })->middleware('auth')->name('minuteCompleteDetails');
+
 Route::get('/profile', function()
 {
 	return View::make('profile');
@@ -152,6 +164,7 @@ Route::get('/uploadppt', function()
 {
 	return View::make('uploadppt');
 })->middleware('auth')->name('uploadppt');
+
 Route::post('/pptUpload','PowerpointController@store');
 
 Route::get('/showPPT', function()
@@ -165,5 +178,6 @@ Route::get('/notifications', function()
 {
 	return View::make('notifications');
 })->middleware('auth')->name('notifications');
+
 Route::post('/sendNotice','NoticeController@store');
 Route::post('/profilePhotoUpload','ProfileImageController@store');

@@ -1,57 +1,25 @@
-@extends('layouts.plane')
+<!-- extends('layouts.plane') -->
 
-@section('body')
- <div id="wrapper">
+<!-- section('body') -->
+@extends('layouts.app')
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-static-top blue-color white-text" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#side-menu">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" id="brand-name" href="{{ ('/') }}" style="color:#fff;">{{ config('app.name', 'Laravel') }}</a>
-                <span id="nav-login" class="nav navbar navbar-toggle navbar-right" >
-                        <a class="dropdown-toggle white-text" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw" ></i>  <i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user" >
-                            @guest
-                                <li><a href="{{ route('login') }}" style="color:#fff;">Login</a></li>
-                                <li><a href="{{ route('register') }}" style="color:#fff;">Register</a></li>
-                            @else
-                                <li><a href="#"><i class="fa fa-user fa-fw"></i>{{ Auth::user()->name }} </a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                                    onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                                    Logout
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            @endguest
-                        </ul>
-                       
-                </span>
-
-              </div>
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            </div>
-            <div class="navbar-default sidebar opag" role="navigation">
-               <div class=" sidebar-nav navbar-collapse opag" id="side-menu">
-                    <ul class="jumbotron nav list-group" id="side-menu">
+@section('sidebar')
+<br>
+<br>
+<nav class="" role="navigation">
+     <div class="navbar-default sidebar opag" role="navigation">
+               <div class=" sidebar-nav collapse navbar-collapse opag" id="side-menu">
+                    <ul class="nav list-group" id="side-menu">
                         <li class="{{(Request::is('*profile') ? 'active' : '') }}">
+                            <div class="profile-userpic">
+                                <img src="{{url('images/project tracker.png')}}" class="img-responsive" alt=" sujan">
+                            </div>
                             <a href="{{ route('profile', ['user' => Auth::user()->name,'value' => Auth::id()]) }}">
                                 <i class="fa fa-user fa-fw"></i>
-                                {{ Auth::user()->name }} </a>
+                                {{ Auth::user()->name }} 
+                            </a>
                         </li>
+                        
                         <!-- show current selected project here -->
                         <li>
                         @if(session()->has('sidebarProjectSelectedResponseCP'))
@@ -155,19 +123,68 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+@stop
 
-        <div id="page-wrapper"  style="background-color: transparent;  border: none;">
-			<div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header white-text">@yield('page_heading')</h1>
+
+@section('content')
+<!--  <div id="wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top black-text" >
+            <div class="container">
+                <div class="navbar-header ">
+                    <button type="button" class=" navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false" aria-controls="app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class=" navbar-brand black-text" href="{{ url('/') }}"  id="brand-name">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        &nbsp;
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="nav-login">
+                        @guest
+                            <li><a href="{{ route('login') }}" class="black-text">Login</a></li>
+                            <li><a href="{{ route('register') }}" class="black-text">Register</a></li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle black-text"  data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu btn btn-small" id="logoutUl" style="width: 20px;">
+                                    <li id="ulogoutl"  >
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="black-text text-center">
+                                            Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
+                                    </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endguest
+                    </ul>
                 </div>
             </div>
-			<div class="" id = "dashboardSection">  
-				@yield('section')
+        </nav>
+</div> -->
+
+        
+<div class="container jumbotron">
+        <div id="page-wrapper" >
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header black-text">@yield('page_heading')</h1>
+                </div>
+            </div>
+            <div class="" id = "dashboardSection">  
+                @yield('section')
 
             </div>
         </div>
-    
-</div>
-@stop
+    </div>
 
+@stop

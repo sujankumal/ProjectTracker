@@ -9,6 +9,9 @@
 .white-text{
    color: #fff;
 }
+.black-text{
+	color: #000;
+}
 body, html {
     height: 100%;
 }
@@ -22,20 +25,21 @@ body, html {
 	margin: 5px;
 }
 #nav-login > li > a:hover,#nav-login > li > a:focus {
-        background-color:#3578ff;
+        /*background-color:#3578ff;*/
+        color: #900020;
 }
 #brand-name:hover{
-        background-color:#3578ff;
+        color: #900020;
 }
 #logoutUl{
- 	background-color: #3578ff;
+ 	color: #900020;
 }
 #ulogoutl > a:hover, #ulogoutl > a:focus{
-	background-color: #3598DC;
+	color: #900020;
 } 
 .bg{ 
 	/*background: transparent url("../images/background-1.jpg") left top;*/
-	background:transparent linear-gradient(to bottom, #5C914A 0%, #47a3a1 100%);
+	/*background:transparent linear-gradient(to bottom, #5C914A 0%, #47a3a1 100%);*/
 	height: 100%;
 	background-size: 100% 100%; 
 	background-attachment: fixed;
@@ -45,10 +49,6 @@ body, html {
  	color: brown;
  }
  .icon-bar{ background-color: #fff;}
-#welcomeHeader>h3:hover{
-	color:#406F31;
-	text-decoration: none;
-}
 #nav-login{
 	display: block;
 	float: right;

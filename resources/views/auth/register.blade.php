@@ -2,14 +2,16 @@
 
 @section('content')
 <div class="container">
+    <br>
+    <br>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class=" panel-default">
-                <div class="text-center margin white-text"><h1> Register</h1></div>
+                <div class="text-center margin black-text"><h1> Register</h1></div>
                 <div class="col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">
-                        <img src="{{url('images/user.png')}}" class="img-thumbnail img-responsive center-block margin" style="display:inline; background:transparent; border:none; margin:10pt;" width="100" alt="user"/>
+                        <img src="{{url('images/user.png')}}" class="img-thumbnail img-responsive center-block margin" style="display:inline; background:transparent;  margin:10pt;" width="100" alt="user"/>
                 </div>
-                <div class="white-text">
+                <div class="black-text">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
