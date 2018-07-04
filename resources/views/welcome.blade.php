@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('contentWelcome')
 <div class="container jumbotron">
   <div class="container-fluid bg-1 text-center" >
     <br>
@@ -18,22 +18,6 @@
         <li ><b>{{$project->name}}</b></li>
       @endforeach
       </ol>
-    </div>
-  </div>
-
-  <!-- Third Container (Grid) -->
-  <div class="container-fluid bg-3 text-center">    
-    
-    <div class="row">
-      <div class="col-sm-4">
-      
-      </div>
-      <div class="col-sm-4"> 
-        
-      </div>
-      <div class="col-sm-4"> 
-      
-      </div>
     </div>
   </div>
 

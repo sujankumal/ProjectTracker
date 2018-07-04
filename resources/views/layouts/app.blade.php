@@ -30,7 +30,6 @@
                         <!-- <span class="sr-only">Toggle Navigation</span> -->
                         <span class="glyphicon glyphicon-user"><i class="caret"></i></span>
                         </button>
-                        {{Route::currentRouteName()}}
                     @if(Route::currentRouteName() != null)
                     <button type="button" class=" navbar-toggle collapsed" data-toggle="collapse" data-target="#side-menu" aria-expanded="false" aria-controls="app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
@@ -86,8 +85,8 @@
                 <div class="row col-lg-9 col-md-9  col-sm-6 page-content-wrapper">
                     @yield('content')
                 </div>
+                @yield('contentWelcome')
             </div>
-
             <!-- Footer -->
             <footer class="navbar navbar-default bg-4 text-center navbar-fixed-bottom  black-text" >
                 <p style="margin:10px">ProjectTracker © 2018</p> 
