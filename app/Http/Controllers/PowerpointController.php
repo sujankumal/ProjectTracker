@@ -82,11 +82,11 @@ class PowerpointController extends Controller
         $messages = [
             'project_id.required' => 'Project not Specified',
             'pptInput.required'=>'Please select Image of meeting',
-            'pptInput:mimes' => 'Please input powerpoint file like pptx,pptm,ppt,pdf,odp,odt'
+            'pptInput:mimes' => 'Please input documents type like pptx,pptm,ppt,pdf,odp,odt,docx,doc'
         ];
         return Validator::make($data, [
             'project_id' => 'required|numeric|max:255',
-            'pptInput'=>'required|file|mimes:pptx,pptm,ppt,pdf,odp,odt',
+            'pptInput'=>'required|file|mimes:pptx,pptm,ppt,pdf,odp,odt,docx,doc',
         ],$messages)->validate();
     }
 
