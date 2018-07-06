@@ -10,16 +10,10 @@
      <div class="navbar-default sidebar opag" role="navigation">
                <div class=" sidebar-nav collapse navbar-collapse opag" id="side-menu">
                     <ul class="nav list-group" id="side-menu">
-                        <li class="{{(Request::is('*profile') ? 'active' : '') }}">
-                            <div class="profile-userpic">
-                                <img src="{{url('images/project tracker.png')}}" class="img-responsive" alt=" sujan">
-                            </div>
-                            <a href="{{ route('profile', ['user' => Auth::user()->name,'value' => Auth::id()]) }}">
-                                <i class="fa fa-user fa-fw"></i>
-                                {{ Auth::user()->name }} 
-                            </a>
-                        </li>
-                        
+                       
+                        <div class="profile-userpic">
+                                <img src="{{url('images/project tracker.png')}}" class="img-responsive" alt="">
+                        </div>
                         <!-- show current selected project here -->
                         <li>
                         @if(session()->has('sidebarProjectSelectedResponseCP'))
@@ -41,6 +35,13 @@
                                     <span class="help-block"><strong>{{ $errors->first('side_project_id') }}</strong></span>
                                 @endif
                             </div>
+                        </li>
+                         <li class="{{(Request::is('*profile') ? 'active' : '') }}">
+                            
+                            <a href="{{ route('profile', ['user' => Auth::user()->name,'value' => Auth::id()]) }}">
+                                <i class="fa fa-user fa-fw"></i>
+                                {{ Auth::user()->name }} 
+                            </a>
                         </li>
                         <li class="{{ (Request::is('*home') ? 'active' : '') }}">
                             <a href="{{ ('/home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
@@ -127,64 +128,15 @@
 
 
 @section('content')
-<!--  <div id="wrapper">
-        <nav class="navbar navbar-default navbar-fixed-top black-text" >
+
             <div class="container">
-                <div class="navbar-header ">
-                    <button type="button" class=" navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false" aria-controls="app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class=" navbar-brand black-text" href="{{ url('/') }}"  id="brand-name">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right" id="nav-login">
-                        @guest
-                            <li><a href="{{ route('login') }}" class="black-text">Login</a></li>
-                            <li><a href="{{ route('register') }}" class="black-text">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle black-text"  data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu btn btn-small" id="logoutUl" style="width: 20px;">
-                                    <li id="ulogoutl"  >
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="black-text text-center">
-                                            Logout
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
-                                    </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                <br>
+                <h3 class="container-fluid opag text-center black-text" id="dashboardHeading">
+                @yield('page_heading')
+                </h3>
             </div>
-        </nav>
-</div> -->
-
-        
-<div class="container jumbotron">
-        <div id="page-wrapper" >
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header black-text">@yield('page_heading')</h1>
-                </div>
+            <div class="jumbotron" id="dashboardSection">
+            @yield('section')
             </div>
-            <div class="" id = "dashboardSection">  
-                @yield('section')
-
-            </div>
-        </div>
-    </div>
-
+     
 @stop

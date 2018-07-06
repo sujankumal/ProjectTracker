@@ -78,11 +78,11 @@
             </div>
         </nav>
         <div class="wrapper">
-            <div class="container container-fluid jumbotron bg">
-                <div class="row profile col-lg-3 col-md-3  col-sm-6 profile-sidebar sidebar-wrapper ">
+            <div class="container jumbotron bg">
+                <div class="row container profile col-lg-3 col-md-3  col-sm-5 profile-sidebar sidebar-wrapper ">
                     @yield('sidebar')
                 </div>
-                <div class="row col-lg-9 col-md-9  col-sm-6 page-content-wrapper">
+                <div class="row col-lg-9 col-md-9  col-sm-8 col-xs-12">
                     @yield('content')
                 </div>
                 @yield('contentWelcome')

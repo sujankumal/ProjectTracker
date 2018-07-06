@@ -3,53 +3,48 @@
 
 @section('section')
            
-      @if(app('request')->input('error')==1)
+    @if(app('request')->input('error')==1)
         <div class="alert alert-danger">
         <p>Sorry!! only access to admin.</p> 
          </div>
     @endif      <!-- /.row -->
-    <div class="col-sm-12">
-            
-                <div class="col-lg-8">
-                    <div class="container-fluid panel white-text opag col-lg-5">
+    
+    <div class="col-lg-8" >
+                    <div class="container-fluid panel opag">
                             <div class="heading">
                                 <h4 class="title">List of Projects</h4>
                             </div>
-                            <div class="container-fluid bg-2 text-center">
                                     <ol>
                                         @foreach(App\project_detail::select('id','name')->get() as $project)
                                             <!-- <a href="{{url('/aboutProject')}}"> -->
                                                 <a href="{{ route('aboutProject', ['project' => $project->name,
                                                     'param' => $project->id]) }}">
-                                                <li >{{$project->name}}</li>
+                                                <li class="list-item"><i class="fa fa-briefcase"></i>&nbsp {{ $project->name }}</li>
                                             </a>
                                         @endforeach
-                                         </ol>
-                                      
-                            </div>
-                          </div>
-                    <div class="container-fluid panel white-text opag col-lg-5 col-lg-offset-1">     
+                                    </ol>
+                    </div>
+                    <div class="container-fluid panel black-text opag">     
                             <div class="heading">
                                     <h4 class="title">List of Users</h4>
                             </div>
-                            <div class="container-fluid bg-2 ">
-                                     <ol>
+                              <ol>
                                         @foreach(App\User::all() as $user)
-                                         <li> 
+                                        <a href="{{ route('profile', ['user' => $user->name,'value' => $user->id]) }}" >
+                                           <li class="list-item"> 
                                             <i class="fa fa-user fa-fw "></i>
-                                            <a href="{{ route('profile', ['user' => $user->name,'value' => $user->id]) }}" class="text-center">
-                                            
-                                            {{ $user->name }} </a>
-                                        </li>
+                                            {{ $user->name }} 
+                                            </li>
+                                        </a>
                                         @endforeach
-                                         </ol>
-                                   
-                                </div>
+                            </ol>  
                     </div>
-             </div>
-         <div class="container-fluid panel white-text opag col-lg-4">
-              <div class="heading"><h3 class="title">Notification</h3>
-            </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="container-fluid panel black-text opag ">
+              <div class="heading">
+                <h3 class="title">Notification</h3>
+               </div>
                 <ol>
                             @foreach(App\notice::all() as $notice)
                                 <li> 
@@ -62,7 +57,6 @@
                             @endforeach
                          </ol>
          </div>
-        
-    </div>            
-                <!-- /.col-lg-4 -->     
+    </div>
+         
 @stop
