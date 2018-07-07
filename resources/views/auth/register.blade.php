@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container container-fluid">
     <br>
     <br>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 ">
             <div class=" panel-default">
                 <div class="text-center margin black-text"><h1> Register</h1></div>
-                <div class="col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">
+                <div class="mx-auto text-center">
                         <img src="{{url('images/user.png')}}" class="img-thumbnail img-responsive center-block margin" style="display:inline; background:transparent;  margin:10pt;" width="100" alt="user"/>
                 </div>
                 <div class="black-text">
@@ -91,7 +91,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <a href="{{ url('auth/google') }}" class="btn btn-md  btn-social btn-google">
-                                    <span class="fa fa-google"></span>  <strong>Login With Google</strong>
+                                    <span class="fa fa-google white-text"></span>  <strong class="white-text">Login With Google</strong>
                                 </a>
                             </div>
                         </div>
