@@ -7,9 +7,7 @@
 @section('page_heading','Project Form')
 
 @section('section')
-<div class="container">
-    <div class="row">
-        <div panel-body bg-info>
+<div class="row container-fluid jumbotron panel">
             <form id="projectForm" class="form-horizontal" method="POST" action="/projectCreate">
                 {{ csrf_field() }}
                 @if(session()->has('message'))
@@ -129,10 +127,7 @@
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
 </div>
-
 
 
 @stop

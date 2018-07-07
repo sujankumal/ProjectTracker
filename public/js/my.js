@@ -16,20 +16,68 @@ function tselectionChange(){
         success: function(resp) {
             
             $.each(resp.taskJSDyViewDatamessage, function(index, value) {
-                var li = document.createElement("li");
-                var btn = document.createElement("BUTTON");
-                var bname = document.createTextNode("delete");
-                
-                li.appendChild(document.createTextNode(value['task']));
-                btn.appendChild(bname);
-                btn.onclick=function(){
-                    console.log(this.value);
+                // var li = document.createElement("li");
+                // var span = document.createElement("span");
+                // var btn = document.createElement("BUTTON");
+                // var bname = document.createTextNode("delete");
+                // span.appendChild(document.createTextNode(value['task']));
+                // li.appendChild(span);
+                // btn.appendChild(bname);
+                // btn.onclick=function(){
+                //     console.log(this.value);
+                //     var p_id = document.getElementById('projID').value;
+                //     $.ajax({
+                //         headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+                //         type: "POST",
+                //         url: '/projectTaskDelete',
+                //         data: {pid:p_id, task:this.value} ,
+                //         success: function(resp) {
+                //             if (resp.taskDelMessage == 100) {
+                //                 document.getElementById('messageDisp').innerHTML = "task deleted";
+                //             }else if (resp.taskDelMessage == 200) {
+                //                 document.getElementById('messageDisp').innerHTML = "task delete error";
+                //             }
+                //             tselectionChange();
+                //         },
+                //         error: function(jqXHR, textStatus, errorThrown) { 
+                //                 console.log(JSON.stringify(jqXHR));
+                //                 console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                //         }
+                //     });
+                //     return false;
+                // };
+                // btn.setAttribute("id","btn"+2);
+                // btn.setAttribute("value",value['task']);
+                // li.appendChild(btn);
+                // ol.appendChild(li);
+                $('#taskList').append(
+                    "<li class=\"\">"+
+                        "<span class=\"col-lg-4 col-md-6 col-sm-6 col-xs-6\">"+
+                        "<b>"+ value['task']+"</b>"+
+                        "</span>"+
+                        "<BUTTON class=\"btn btn-sm \" form=\"xyz\" id=\"btn2\" value=\""+value['task'] +"\" onclick=\"taskDelete(this);\">"+
+                        "Delete</BUTTON>"+
+                    "</li>"+
+                    "<hr>"
+                    );
+            }); 
+            
+        },
+        error: function(jqXHR, textStatus, errorThrown) { 
+        console.log(JSON.stringify(jqXHR));
+        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+}
+});
+}
+function taskDelete(argument) {
+    // body...
+                    console.log(argument.value);
                     var p_id = document.getElementById('projID').value;
                     $.ajax({
                         headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
                         type: "POST",
                         url: '/projectTaskDelete',
-                        data: {pid:p_id, task:this.value} ,
+                        data: {pid:p_id, task:argument.value} ,
                         success: function(resp) {
                             if (resp.taskDelMessage == 100) {
                                 document.getElementById('messageDisp').innerHTML = "task deleted";
@@ -44,21 +92,9 @@ function tselectionChange(){
                         }
                     });
                     return false;
-                };
-                btn.setAttribute("id","btn"+2);
-                btn.setAttribute("value",value['task']);
-                li.appendChild(btn);
-                ol.appendChild(li);
-            }); 
-            
-        },
-        error: function(jqXHR, textStatus, errorThrown) { 
-        console.log(JSON.stringify(jqXHR));
-        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+        
 }
-});
-   
-}
+
 function submitClicked(){
     var check = tsendDataToController();
     if (check == 0) {

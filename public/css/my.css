@@ -84,8 +84,9 @@ body, html {
 	margin: 5px;
 	text-decoration: none;	
 }
-#mfs{
-	height:150px;
+#mfs, #ptscr{
+	height:200px;
 	overflow:hidden;
 	overflow-y:scroll;
 }
+

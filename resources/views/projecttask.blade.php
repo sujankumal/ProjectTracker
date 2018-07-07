@@ -2,23 +2,25 @@
 @section('page_heading','Tasks')
 
 @section('section')
-<div class="container">
-    <div class="row">
-        <div panel-body bg-info>
+<div class="row container-fluid">
+    
             <form id="projectTask" class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
               {{ csrf_field() }}
+              <div class="container-fluid  panel ">
                 @if(session()->has('messageProjectTaskCreate'))
                     <div class="alert alert-success">
                         {{ session()->get('messageProjectTaskCreate') }}
                     </div>
                 @endif
-                <div class="container-fluid bg-2 text-center">
+                <div id="ptscr">
+                    <br>
                     <ol id="taskList">
-                      
                     </ol>
-                  </div>
+                 </div>
+            </div>
                 <script src="{{ asset("js/autho.js")}}" type="text/javascript"></script>
                 
+                <div class="container-fluid jumbotron panel ">
                 @if(session()->has('sidebarProjectSelectedResponsePID'))
                     
                     <div class="form-group{{ $errors->has('projID') ? ' has-error' : '' }}">
@@ -53,14 +55,18 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
+                    <div class="col-md-4 col-md-offset-4">
                         <button type="button" class="btn btn-md btn-success" form="projectTask" onclick="submitClicked();">Submit</button>
-                        <span id="messageDisp" class="help-block"></span>
+                        <div  class="help-block ">
+                            <br>
+                            <span id="messageDisp"></span>
+                            <br>
+                        </div>
+                        
                     </div>
                 </div>
-                
+                </div>
             </form>
-        </div>
-    </div>
+        
 </div>
 @stop
