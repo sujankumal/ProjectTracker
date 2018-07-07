@@ -1,9 +1,7 @@
 @extends ('layouts.dashboard')
 @section('page_heading','PPT file Upload')
 @section('section')
-<div class="container">
-    <div class="row">
-        <div panel-body bg-info>
+<div class="row container-fluid jumbotron panel">
             <form id="minuteForm" class="form-horizontal" method="POST" action="/pptUpload" enctype="multipart/form-data">
               {{ csrf_field() }}
                 @if(session()->has('pptUpload'))
@@ -51,8 +49,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
 </div>
 
 @stop

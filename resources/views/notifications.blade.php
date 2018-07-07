@@ -3,10 +3,7 @@
 @section ('page_heading','Notice')
 
 @section('section')
-
-<div class="container">
-    <div class="row">
-        <div panel-body bg-info>
+<div class="row container-fluid jumbotron panel">
             <form id="projectNotice" class="form-horizontal" method="POST" action="/sendNotice" enctype="multipart/form-data">
               {{ csrf_field() }}
                 @if(session()->has('messageNoticeCreate'))
@@ -46,7 +43,5 @@
                 </div>
                 
             </form>
-        </div>
-    </div>
 </div>
 @stop
