@@ -30,7 +30,7 @@
                     </td>
                 </tr>
             </table> 
-                    <!-- <script src="{{ asset("js/autho.js")}}" type="text/javascript"></script> -->
+                    <script src="{{ asset("js/autho.js")}}" type="text/javascript"></script>
                 @if(session()->has('sidebarProjectSelectedResponsePID'))
                     
                     <div class="form-group{{ $errors->has('project_id') ? ' has-error' : '' }} row container jumbotron panel">
@@ -40,7 +40,7 @@
                            <script type="text/javascript"> 
                             $(document).ready(function() {
                                     load();
-                                    // authoQRScanPS();
+                                    authoQRScanPS();
                                 });
                            </script>
                             <option value=" {{ session()->get('sidebarProjectSelectedResponsePID') }} ">{{session()->get('sidebarProjectSelectedResponseCP')}}</option>

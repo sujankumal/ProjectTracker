@@ -100,8 +100,10 @@ function authoQRScanPS(){
         success: function(resp) {
             if (resp.checkPermisionProjectQRScan == 0 || resp.checkPermisionProjectQRScan == 1) {
             }else{
-            	alert("Sorry!!! \nOnly Leader or Supervisor or Members of the project can perform this Tasks.\nPlease select appropriate project");
-                $("#project_id").val(null).trigger("change");
+            	// alert("Sorry!!! \nOnly Leader or Supervisor or Members of the project can perform this Tasks.\nPlease select appropriate project");
+                // $("#project_id").val(null).trigger("change");
+                $('#project_id').prop('disabled', true);
+                $('#project_id').after('<span class=\"alert-danger\">Only Leader or Supervisor or Members of the project can perform this Tasks. Please select another project from sidebar. </span>')
             }
             
             console.log(resp.checkPermisionProjectQRScan+"resp from server");
