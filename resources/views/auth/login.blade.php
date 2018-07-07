@@ -5,10 +5,10 @@
     <br>
     <br>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class=" panel-default ">
-                <div class=" text-center margin black-text" ><h1>Login</h1></div>
-                <div class="col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">
+        <div class="col-md-8 col-md-offset-">
+            <div class="panel-default ">
+                <div class="text-center margin black-text" ><h1>Login</h1></div>
+                <div class="mx-auto text-center">
                     <img src="{{url('images/user.png')}}" class="img-thumbnail img-responsive center-block margin" style="display:inline; background:transparent; border:none; margin:10pt;" width="100" alt="user"/>
                 </div>
                 <div class="black-text ">
@@ -42,7 +42,7 @@
                             <label for="password" class="col-md-4 control-label">Password &nbsp; &nbsp;<span class="glyphicon glyphicon-lock"> </span></label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" placeholder="*********" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -63,13 +63,13 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                            <div class="col-md-8 col-md-offset-4" id="dashboardSection">
                                 <button type="submit" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-log-in"> </span>&nbsp; Login
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                   <p class="black-text"> Forgot Your Password?</p>
+                                   <h4 class="black-text"> Forgot Your Password?</h4>
                                 </a>
                                     
                             </div>
@@ -78,7 +78,7 @@
                                 <div class="col-md-8 col-md-offset-4">
                                         
                                         <a href="{{ url('auth/google') }}" class="btn btn-md  btn-social btn-google">
-                                            <span class="fa fa-google"></span><strong>Login With Google</strong>
+                                            <span class="fa fa-google white-text"></span><strong class="white-text">Login With Google</strong>
                                         </a>     
                                 </div>
                         </div>
