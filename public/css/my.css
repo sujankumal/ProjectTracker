@@ -90,3 +90,18 @@ body, html {
 	overflow-y:scroll;
 }
 
+#homeProjScroll{
+	height:400px;
+	overflow:hidden;
+	overflow-y:scroll;	
+}
+#homeUserScroll{
+	height:180px;
+	overflow:hidden;
+	overflow-y:scroll;
+}
+#homeNotiScroll{
+	height:400px;
+	overflow:hidden;
+	overflow-y:scroll;	
+}

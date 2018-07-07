@@ -10,7 +10,7 @@
     @endif      <!-- /.row -->
     
     <div class="col-lg-8" >
-                    <div class="container-fluid panel opag">
+                    <div class="container-fluid panel opag" id="homeProjScroll">
                             <div class="heading">
                                 <h4 class="title">List of Projects</h4>
                             </div>
@@ -21,10 +21,38 @@
                                                     'param' => $project->id]) }}">
                                                 <li class="list-item"><i class="fa fa-briefcase"></i>&nbsp {{ $project->name }}</li>
                                             </a>
+
+                                            <?php 
+                                                $totalNumOftask = 1;
+                                                $count=0;
+                                                $percentage = 0;
+                                                $totalNumOftaskIncomplete = 0;
+                                            ?>
+                            
+                                            @foreach(App\project_task::select('task','task_complete')->where('project_id', $project->id)->get() as $taskResult)
+                                                <?php 
+                                                    if ($count != 0) {
+                                                        $totalNumOftask++;
+                                                    }
+                                                    $count++;    
+                                                    if ($taskResult->task_complete == null) {
+                                                        $totalNumOftaskIncomplete++;
+                                                    }
+                                                ?>
+                                            @endforeach
+                                            <?php
+                                                if($count!=0){
+                                                    $percentage = (($totalNumOftask-$totalNumOftaskIncomplete)/$totalNumOftask)*100;
+                                                    $percentage = round($percentage,2);
+                                                }
+                                            ?>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success black-text " role="progressbar" style="width: {{$percentage}}%;" aria-valuenow="{{$percentage}}" aria-valuemin="0" aria-valuemax="100">{{$percentage}}%</div>
+                                            </div>
                                         @endforeach
                                     </ol>
                     </div>
-                    <div class="container-fluid panel black-text opag">     
+                    <div class="container-fluid panel black-text opag" id="homeUserScroll">     
                             <div class="heading">
                                     <h4 class="title">List of Users</h4>
                             </div>
@@ -41,7 +69,7 @@
                     </div>
       </div>
       <div class="col-lg-4">
-        <div class="container-fluid panel black-text opag ">
+        <div class="container-fluid panel black-text opag " id ="homeNotiScroll">
               <div class="heading">
                 <h3 class="title">Notification</h3>
                </div>
