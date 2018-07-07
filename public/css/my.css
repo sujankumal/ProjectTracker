@@ -80,3 +80,12 @@ body, html {
 #dashboardHeading{
 	padding: 10px;
 }
+#leader_acheivement input, #member_i_acheivement input, #member_ii_acheivement input, #leader_responsibility input, #member_i_responsibility input, #member_ii_responsibility input{
+	margin: 5px;
+	text-decoration: none;	
+}
+#mfs{
+	height:150px;
+	overflow:hidden;
+	overflow-y:scroll;
+}
