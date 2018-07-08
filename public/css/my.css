@@ -95,13 +95,21 @@ body, html {
 	overflow:hidden;
 	overflow-y:scroll;	
 }
-#homeUserScroll{
+#homeUserScroll, #minuteDisplay,#presentationDisplay{
 	height:180px;
 	overflow:hidden;
 	overflow-y:scroll;
 }
 #homeNotiScroll{
 	height:400px;
+	overflow:hidden;
+	overflow-y:scroll;	
+}
+#aboutProjectNames{
+	text-decoration: none;
+}
+#aboutProjectTasksScroll{
+	height:290px;
 	overflow:hidden;
 	overflow-y:scroll;	
 }

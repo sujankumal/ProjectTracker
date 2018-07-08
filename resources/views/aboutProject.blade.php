@@ -2,9 +2,7 @@
 @section('page_heading','Detail of Project')
 @section('section')
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <div class="col-sm-12">
-        <div class="">
+<div class="row container-fluid">
                 <?php $results = App\project_detail::all()->where('id', app('request')->input('param')); ?>
                 @if($results->isEmpty())
                     <p>Sorry Empty! Error</p>
@@ -22,11 +20,11 @@
                     $b = App\User::select('name')->where('id', $result->member_idii);
                     ($b->count())?$memberIIName=$b->first()->name:"" ;
                     ?>
-                    <div class="">
-                        <div class="container-fluid panel white-text opag col-lg-5">
+                    <div class="row">
+                    <div class="container-fluid panel opag black-text col-lg-6" id="aboutProjectNames">
                             <br>
-                             <p>Name: {{$result->name}}</p>
-                             <p>Type: 
+                             <li class="list-group-item">Name: {{$result->name}}</li>
+                             <li class="list-group-item">Type: 
                                 @if($result->type == 0)
                                   <span>Minor Project I</span>
                                 @elseif($result->type == 1)
@@ -34,18 +32,19 @@
                                 @elseif($result->type == 2)
                                   <span>Major Project</span>
                                 @endif
-                              </p>
-                             <p>Year: {{$result->year}}</p>
-                             <p>Project Head: {{$headName}}</p>
-                             <p>Project Supervisor: {{$SupervisorName}}</p>
-                             <p>Project Leader: {{$leaderName}}</p>
-                             <p>Project Member: {{$memberIName}}</p>
-                             <p>Project Member: {{$memberIIName}}</p>
+                              </li>
+                             <li class="list-group-item">Year: {{$result->year}}</li>
+                             <li class="list-group-item">Project Head: {{$headName}}</li>
+                             <li class="list-group-item">Project Supervisor: {{$SupervisorName}}</li>
+                             <li class="list-group-item">Project Leader: {{$leaderName}}</li>
+                             <li class="list-group-item">Project Member: {{$memberIName}}</li>
+                             <li class="list-group-item">Project Member: {{$memberIIName}}</li>
                               <br>
                         </div>
-                         <div class="container-fluid panel white-text opag col-lg-5 col-lg-offset-1" >
-                            <p>Project Task List</p>
-                            <ul style="height:250px;  overflow:hidden; overflow-y:scroll;">
+                      <div class="container-fluid panel opag black-text opag col-lg-5 col-lg-offset-1" >
+                          <br>
+                            <p class="text-center">Project Task List</p>
+                            <ul id="aboutProjectTasksScroll">
                             <?php 
                                 $totalNumOftask = 0; 
                                 $totalNumOftaskIncomplete = 0;
@@ -73,53 +72,59 @@
 
                             </ul>
                          </div>
-                     </div>
-                     <div class="container-fluid panel white-text opag col-lg-5 " id="minuteDisplay" style="height:250px;  overflow:hidden; overflow-y:scroll;">
-                        <caption >Minutes</caption>
-                        <table id="minuteTable" class="table ">
-                          <thead>
-                            <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Agenda</th>
-                              <th scope="col">Discussion</th>
-                              <th scope="col">More Detail</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php $countData = 1;?>
-                          @foreach(App\minute::all()->where('project_id', app('request')->input('param')) as $minuteResult)
+                       </div>
+
+                    <div class="row">
+                       <div class="container-fluid panel opag black-text opag col-lg-6 text-center" >
+                        <br>
+                          <span><b>Minutes</b></span>
+                          <hr>
+                          <div id="minuteDisplay">
+                          <table id="minuteTable" class="table ">
+                            <thead>
                               <tr>
-                                <th scope="row">{{$countData++}}</th>
-                                <td>{{$minuteResult->agenda}}</td>
-                                <td>{{$minuteResult->discussion}}</td>
-                                <td>
-                                  <a href="{{ route('minuteCompleteDetails', ['project' => $result->name,
-                                                    'param' => $minuteResult->id]) }}">
-                                                {{$minuteResult->id}}
-                                  </a>
-                                </td>
-                              </tr> 
-                          @endforeach
-                          </tbody>
-                        </table>
-                        
+                                <th scope="col">#</th>
+                                <th scope="col">Agenda</th>
+                                <th scope="col">Discussion</th>
+                                <th scope="col">More Detail</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php $countData = 1;?>
+                            @foreach(App\minute::all()->where('project_id', app('request')->input('param')) as $minuteResult)
+                                <tr>
+                                  <th scope="row">{{$countData++}}</th>
+                                  <td>{{$minuteResult->agenda}}</td>
+                                  <td>{{$minuteResult->discussion}}</td>
+                                  <td>
+                                    <a href="{{ route('minuteCompleteDetails', ['project' => $result->name,
+                                                      'param' => $minuteResult->id]) }}">
+                                                 <li class="list-group-item">{{$minuteResult->id}}</li>
+                                    </a>
+                                  </td>
+                                </tr> 
+                            @endforeach
+                            </tbody>
+                          </table>
+                        </div>
+                       </div>
+                       <div id="pptdisplay" class="container-fluid panel black-text opag col-lg-5 col-lg-offset-1">
+                        <br>
+                        <p>List of Presentation</p>
+                        <br>
+                        <div id="presentationDisplay">
+                         <ol>
+                           @foreach(App\Powerpoint::select('id', 'powerpoint')->where('project_id',app('request')->input('param'))->get() as $res)
+                              <a href="{{asset('uploads/'.$res->powerpoint)}}" ><li>{{substr($res->powerpoint,11)}}</li></a>
+                           @endforeach
+                         </ol>
+                       </div>
                      </div>
-                     <div id="pptdisplay" class="container-fluid panel white-text opag col-lg-5 col-lg-offset-1">
-                      <br>
-                      <p>List of Presentation</p>
-                      <br>
-                       <ol>
-                         @foreach(App\Powerpoint::select('id', 'powerpoint')->where('project_id',app('request')->input('param'))->get() as $res)
-                            <!-- <a href="{{ route('showPPT', ['project' => $result->name,'param' => $res->id]) }}"><li>{{substr($res->powerpoint,11)}}</li></a> -->
-                            <a href="{{asset('uploads/'.$res->powerpoint)}}" ><li>{{substr($res->powerpoint,11)}}</li></a>
-                         @endforeach
-                       </ol>
-                     </div>
-                     <div class="container-fluid panel white-text opag col-lg-5 col-lg-offset-1"">
-                       
-                         <div id="piechart" >
-                           
-                         </div>
+                      </div>
+                     
+                     <div class="row container-fluid panel black-text opag ">
+                        <div id="piechart" >
+                        </div>
                             <script type="text/javascript">
                             // Load google charts
                             google.charts.load('current', {'packages':['corechart']});
@@ -161,11 +166,9 @@
                             </script> 
                             
                      </div>
+                     
                     @endforeach
                 @endif
             
-        </div>
-
-    </div>
-        
+ </div>
 @stop
