@@ -44,7 +44,7 @@
                             </a>
                         </li>
                         <li class="{{ (Request::is('*home') ? 'active' : '') }}">
-                            <a href="{{ ('/home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ ('/home') }}"><i class="fa fa-home fa-fw"></i> Home</a>
                         </li>
                         @if(Auth::user()->email == config('app.adminEmail') )
                         <li class="{{(Request::is('*projectForm') ? 'active' : '') }}">
@@ -58,10 +58,10 @@
                                 <a href="{{ ('minuteForm') }}"><i class="fa fa-edit fa-fw"></i> Minute Form</a>
                                 </li>
                                 <li class="{{(Request::is('*tasks') ? 'active' : '') }}">
-                                        <a href="{{ ('tasks') }}"><i class="fa fa-edit fa-fw"></i>Project tasks Add</a>
+                                        <a href="{{ ('tasks') }}"><i class="fa fa-edit fa-fw"></i>Add Project tasks</a>
                                 </li>
                                 <li class="{{(Request::is('*QR') ? 'active' : '') }}">
-                                    <a href="{{ ('QR') }}"><i class="glyphicon glyphicon-qrcode"></i> QR Generate</a>
+                                    <a href="{{ ('QR') }}"><i class="glyphicon glyphicon-qrcode"></i> Generate QR Code</a>
                                 </li>
                                 <li class="{{(Request::is('*uploadppt') ? 'active' : '') }}">
                                     <a href="{{ ('uploadppt') }}"><i class="fa fa-upload" aria-hidden="true"></i> Upload Presentaion file</a>
@@ -72,7 +72,7 @@
                             @elseif(session()->get('sidebarProjectSelectedResponse') == 2)
                             <!-- head -->
                                 <li class="{{(Request::is('*QR') ? 'active' : '') }}">
-                                    <a href="{{ ('QR') }}"><i class="glyphicon glyphicon-qrcode"></i> QR Generate</a>
+                                    <a href="{{ ('QR') }}"><i class="glyphicon glyphicon-qrcode"></i> Generate QR Code</a>
                                     <!-- /.nav-second-level -->
                                 </li>
                                 <li class="{{(Request::is('*notifications') ? 'active' : '') }}">
@@ -84,7 +84,7 @@
                                 <a href="{{ ('minuteForm') }}"><i class="fa fa-edit fa-fw"></i> Minute Form</a>
                                 </li>
                                 <li class="{{(Request::is('*tasks') ? 'active' : '') }}">
-                                        <a href="{{ ('tasks') }}"><i class="fa fa-edit fa-fw"></i>Project tasks Add</a>
+                                        <a href="{{ ('tasks') }}"><i class="fa fa-edit fa-fw"></i>Add Project tasks</a>
                                 </li>
                                 <li class="{{(Request::is('*uploadppt') ? 'active' : '') }}">
                                     <a href="{{ ('uploadppt') }}"><i class="fa fa-upload" aria-hidden="true"></i> Upload Presentaion file</a>
@@ -99,7 +99,7 @@
                                 <a href="{{ ('minuteForm') }}"><i class="fa fa-edit fa-fw"></i> Minute Form</a>
                                 </li>
                                 <li class="{{(Request::is('*tasks') ? 'active' : '') }}">
-                                        <a href="{{ ('tasks') }}"><i class="fa fa-edit fa-fw"></i>Project tasks Add</a>
+                                        <a href="{{ ('tasks') }}"><i class="fa fa-edit fa-fw"></i>Add Project tasks</a>
                                 </li>
                                 <li class="{{(Request::is('*uploadppt') ? 'active' : '') }}">
                                     <a href="{{ ('uploadppt') }}"><i class="fa fa-upload" aria-hidden="true"></i> Upload Presentaion file</a>
@@ -111,7 +111,7 @@
                             <!-- //error! not head supervisor or leader -->
                             @endif
                             <li class="{{(Request::is('*QRScan') ? 'active' : '') }}">
-                                <a href="{{ ('QRScan') }}"><i class="fa fa-scanner"></i><i class="glyphicon glyphicon-search"></i> Scan QR</a>
+                                <a href="{{ ('QRScan') }}"><i class="fa fa-scanner"></i><i class="glyphicon glyphicon-search"></i> Scan QR code</a>
                             </li>    
                         @endif
                         <li class="{{(Request::is('*about') ? 'active' : '') }}">
