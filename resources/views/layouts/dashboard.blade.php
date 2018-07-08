@@ -135,7 +135,7 @@
                 @yield('page_heading')
                 </h3>
             </div>
-            <div class="jumbotron" id="dashboardSection">
+            <div class="container" id="dashboardSection">
             @yield('section')
             </div>
      

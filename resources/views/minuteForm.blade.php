@@ -2,7 +2,8 @@
 @section('page_heading','Minute Form')
 
 @section('section')
-<div class="row container-fluid jumbotron panel">
+<div class="row container-fluid">
+    <div class=" jumbotron panel">
             <form id="minuteForm" class="form-horizontal" method="POST" action="/minuteCreate" enctype="multipart/form-data">
               {{ csrf_field() }}
                 @if(session()->has('messageMinuteCreate'))
@@ -143,4 +144,5 @@
                 </div>
             </form>
         </div>
+</div>
 @stop

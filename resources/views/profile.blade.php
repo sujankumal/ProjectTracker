@@ -11,8 +11,10 @@
  	$project_member2_result = App\project_detail::all()->where('member_idii',$id);
  ?>
 <?php $a =App\ProfileImage::select('pimage')->where('user_id',$id)->orderBy('created_at', 'desc')->first()?>
+<div class="row container-fluid">
+  <div class="row">
   <div class="col-lg-8">
-      <div class="row container panel opag mx-auto text-center">
+      <div class="container-fluid panel opag mx-auto text-center">
         @if($a!=null)
         <img src="{{url('uploads/'.$a->pimage)}}" class="img-fluid img-circle" style="display:inline; background:transparent; border:none; margin:10pt; " width="150" height="150" alt="{{$a}}"/>
         @else
@@ -20,7 +22,7 @@
         @endif
         
       </div>
-      <div class="row container panel opag">
+      <div class="container-fluid panel opag">
        		<p>Name: {{app('request')->input('user')}}</p>
        		<p>Email: {{$result->email}}</p>
        		@if($result->batch!=null)
@@ -28,7 +30,7 @@
        		@endif
       </div>
        	@if($project_head_result->first()!=null)
-       <div class="row container panel opag">
+       <div class="container-fluid panel opag">
           <p> As a Project Head In:</p>
        			<ol>
        				@foreach($project_head_result as $rs)
@@ -48,7 +50,7 @@
    		</div>
    		@endif
    		@if($project_supervisor_result->first()!=null)
-   		<div class="row container panel opag">
+   		<div class="container-fluid panel opag">
    			<p>As a Project Supervisor In:</p>
    			<ol>
    				@foreach($project_supervisor_result as $rs)
@@ -67,7 +69,7 @@
    		</div>
    		@endif
    		@if($project_leader_result->first()!=null)
-   		<div class="row container panel opag">
+   		<div class="container-fluid panel opag">
    			<p>As a Project leader In:</p>
    			<ol>
    				@foreach($project_leader_result as $rs)
@@ -87,7 +89,7 @@
    		@endif
    		
    		@if($project_member1_result->first()!=null)
-   		<div class="row container panel opag">
+   		<div class="container-fluid panel opag">
    			As a Project 1st Member In:
    			<ol>
    				@foreach($project_member1_result as $rs)
@@ -107,7 +109,7 @@
    		@endif
 
    		@if($project_member2_result->first()!=null)
-   		<div class="row container panel opag">
+   		<div class="container-fluid panel opag">
    			As a Project 2nd member In:
    			<ol>
    				@foreach($project_member2_result as $rs)
@@ -129,7 +131,7 @@
   
   @if(Auth::user()->id == $id)
     <div class="col-lg-4 ">
-            <div class="row container panel black-text opag">
+            <div class="container-fluid panel black-text opag">
               <h4>Do you want to change password?</h4>
               <div class="panel">
                 <a href="/passwordchange" id="passwordchange"><span> Change Password!! </span></a>
@@ -144,7 +146,7 @@
             </div>
             
             @if(Auth::user()->batch == null && Auth::user()->email != config('app.adminEmail'))
-              <div class="row container panel opag black-text" >
+              <div class="container-fluid panel opag black-text" >
                 <h4>
                   Your Batch is not set. Please Select your Batch!
                 </h4>
@@ -170,7 +172,7 @@
               </div>
             @endif
 
-            <div class="row container panel opag  black-text" style="overflow: hidden;" >
+            <div class="container-fluid panel opag  black-text" style="overflow: hidden;" >
               <h4>Do you want to change profile photo?</h4>
               <form id="profileimg" method="POST" action="/profilePhotoUpload" enctype="multipart/form-data">
                 {{ csrf_field() }}
@@ -207,4 +209,6 @@
           </script>
    </div>
   @endif
+  </div>
+</div>
 @stop

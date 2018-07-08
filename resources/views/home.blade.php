@@ -2,14 +2,14 @@
 @section('page_heading','Dashboard')
 
 @section('section')
-           
+<div class="row container-fluid">        
     @if(app('request')->input('error')==1)
         <div class="alert alert-danger">
         <p>Sorry!! only access to admin.</p> 
          </div>
     @endif      <!-- /.row -->
-    
-    <div class="col-lg-8" >
+    <div class="row">
+    <div class="col-lg-7" >
                     <div class="container-fluid panel opag" id="homeProjScroll">
                             <div class="heading">
                                 <h4 class="title">List of Projects</h4>
@@ -68,7 +68,7 @@
                             </ol>  
                     </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-5">
         <div class="container-fluid panel black-text opag " id ="homeNotiScroll">
               <div class="heading">
                 <h3 class="title">Notification</h3>
@@ -86,5 +86,6 @@
                          </ol>
          </div>
     </div>
-         
+</div>
+</div>
 @stop

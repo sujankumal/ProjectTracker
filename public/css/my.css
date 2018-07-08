@@ -116,3 +116,23 @@ body, html {
 #minuteDetailsImage{
 	width: 90%;
 }
+#piechart{
+	overflow:hidden;
+	overflow-x:scroll;
+}
+@media only screen and (max-width: 450px) {
+    #outdiv{
+		width:200px;
+		overflow: hidden;
+		overflow-x: scroll;
+
+	}
+}
+@media only screen and (max-width: 350px) {
+    #outdiv{
+		width:150px;
+		overflow: hidden;
+		overflow-x: scroll;
+
+	}
+}

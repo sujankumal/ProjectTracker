@@ -2,9 +2,9 @@
 @section('page_heading','Dashboard')
 
 @section('section')
-<div id="qrform">
+<div class="row container-fluid" id="qrform">
 	<form id = "QRForm" class="form-horizontal" method="POST" action="/QRCreate">
-		<div class="row container-fluid jumbotron panel opag">   
+		<div class="jumbotron panel opag">   
         {{ csrf_field() }}
 		 @if(session()->has('qrfilename'))
                 <div class="alert alert-success">
