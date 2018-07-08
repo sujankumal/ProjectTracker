@@ -95,7 +95,7 @@ body, html {
 	overflow:hidden;
 	overflow-y:scroll;	
 }
-#homeUserScroll, #minuteDisplay,#presentationDisplay{
+#homeUserScroll, #minuteDisplay,#presentationDisplay,#minuteDetAchScroll, #minuteDetResScroll,#minuteDetAtteScroll{
 	height:180px;
 	overflow:hidden;
 	overflow-y:scroll;
@@ -112,4 +112,7 @@ body, html {
 	height:290px;
 	overflow:hidden;
 	overflow-y:scroll;	
+}
+#minuteDetailsImage{
+	width: 90%;
 }
