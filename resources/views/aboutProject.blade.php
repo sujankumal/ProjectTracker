@@ -1,11 +1,22 @@
-@extends('layouts.dashboard')
+
+@extends('layouts.main')
+
 @section('page_heading','Detail of Project')
+
 @section('section')
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<div class="row container-fluid">
                 <?php $results = App\project_detail::all()->where('id', app('request')->input('param')); ?>
                 @if($results->isEmpty())
-                    <p>Sorry Empty! Error</p>
+                <div class="col-md-3">
+                      <div class="box box-primary">
+                          <div class="box-header with-border">
+                              <h3 class="box-title">Error!!</h3>
+                          </div>
+                          <div class="box-body">
+                              Sorry Empty!
+                          </div>
+                      </div>
+                  </div>
                 @else
                     @foreach($results as $result)
                     <?php 
@@ -20,11 +31,25 @@
                     $b = App\User::select('name')->where('id', $result->member_idii);
                     ($b->count())?$memberIIName=$b->first()->name:"" ;
                     ?>
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="container-fluid panel opag black-text " id="aboutProjectNames">
-                                <br>
-                                 <li class="list-group-item">Name: {{$result->name}}</li>
+                   <!-- 
+                    <div class="col-md-3">
+                      <div class="box box-primary">
+                          <div class="box-header with-border">
+                              <h3 class="box-title">About Me</h3>
+                          </div>
+                          <div class="box-body">
+                              Body
+                          </div>
+                      </div>
+                    </div> 
+                  -->
+                  <div class="col-md-6">
+                        <div class="box box-primary" id="aboutProjectNames">
+                          <div class="box-header with-border">
+                              <h3 class="box-title">Project</h3>
+                          </div>
+                           <div class="box-body">
+                                <li class="list-group-item">Name: {{$result->name}}</li>
                                  <li class="list-group-item">Type: 
                                     @if($result->type == 0)
                                       <span>Minor Project I</span>
@@ -40,13 +65,15 @@
                                  <li class="list-group-item">Project Leader: {{$leaderName}}</li>
                                  <li class="list-group-item">Project Member: {{$memberIName}}</li>
                                  <li class="list-group-item">Project Member: {{$memberIIName}}</li>
-                                  <br>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                          <div class="container-fluid panel opag black-text opag" >
-                              <br>
-                                <p class="text-center">Project Task List</p>
+                              </div>
+                          </div>
+                    </div>
+                    <div class="col-lg-6">
+                          <div class="box box-primary" >
+                              <div class="box-header with-border">
+                                <h3 class="box-title">Project Task List</h3>
+                              </div>
+                               <div class="box-body">
                                 <ul id="aboutProjectTasksScroll">
                                 <?php 
                                     $totalNumOftask = 0; 
@@ -74,17 +101,17 @@
                                 @endforeach
 
                                 </ul>
-                             </div>
-                          </div>
-                       </div>
+                              </div>
+                        </div>
+                    </div>
 
-                    <div class="row">
                       <div class="col-lg-6">
-                        <div class="container-fluid panel opag black-text text-center" >
-                          <br>
-                            <span><b>Minutes</b></span>
-                            <hr>
-                            <div id="minuteDisplay">
+                        <div class="box box-primary" >
+                          <div class="box-header with-border">
+                              <h3 class="box-title">Minutes</h3>
+                          </div>
+                          <div class="box-body" id="minuteDisplay">
+                            
                             <table id="minuteTable" class="table ">
                               <thead>
                                 <tr>
@@ -111,27 +138,30 @@
                               @endforeach
                               </tbody>
                             </table>
-                          </div>
                          </div>
                        </div>
-                       <div class="col-lg-6">
-                           <div id="pptdisplay" class="container-fluid panel black-text opag ">
-                            <br>
-                            <p>List of Presentation</p>
-                            <br>
-                            <div id="presentationDisplay">
-                               <ol>
-                                 @foreach(App\Powerpoint::select('id', 'powerpoint')->where('project_id',app('request')->input('param'))->get() as $res)
-                                    <a href="{{asset('uploads/'.$res->powerpoint)}}" ><li>{{substr($res->powerpoint,11)}}</li></a>
-                                 @endforeach
-                               </ol>
-                             </div>
+                     </div>
+                      <div class="col-lg-6">
+                        <div class="box box-primary" id="pptdisplay">
+                          <div class="box-header with-border">
+                              <h3 class="box-title">List of Presentation</h3>
                           </div>
+                          <div  class="box-body" id="presentationDisplay">
+                                 <ol>
+                                   @foreach(App\Powerpoint::select('id', 'powerpoint')->where('project_id',app('request')->input('param'))->get() as $res)
+                                      <a href="{{asset('uploads/'.$res->powerpoint)}}" ><li>{{substr($res->powerpoint,11)}}</li></a>
+                                   @endforeach
+                                 </ol>
+                          </div> 
                         </div>
                       </div>
-                      <div class="row">
                         <div class="col-lg-12">
-                          <div class="container-fluid panel black-text opag ">
+                          <div class="box box-primary">
+                            <div class="box-header with-border">
+                              <h3 class="box-title">Progress Detail in piechart</h3>
+                            </div>
+                            <div  class="box-body">
+                          
                               <div id="piechart" >
                               </div>
                               <script type="text/javascript">
@@ -179,6 +209,4 @@
                      </div>
                     @endforeach
                 @endif
-            
- </div>
 @stop
