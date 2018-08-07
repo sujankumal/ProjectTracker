@@ -119,17 +119,17 @@
         
         <!-- selection of project -->
         <li class="treeview">
-          <div class="form-group{{ $errors->has('side_project_id') ? ' has-error' : '' }}">
-            <select id="side_project_id" name ="side_project_id" class="form-control" onchange="sidebarProjectSelect();">
+          <a class="form-group{{ $errors->has('side_project_id') ? ' has-error' : '' }}">
+            <select id="side_project_id" name ="side_project_id" class="form-control" onchange="sidebarProjectSelect();" style="background-color: inherit; border: none; color: inherit; text-decoration-color: inherit;">
               <option value="" disabled selected> &nbsp; Please Select a Project</option>
                 @foreach(App\project_detail::all() as $project)
-                    <option value="{{$project->id}}">{{$project->name}}</option>
+                    <option value="{{$project->id}}" style="background-color: inherit; border: none; color: inherit; text-decoration-color: inherit;">{{$project->name}}</option>
                 @endforeach
              </select>
                 @if ($errors->has('side_project_id'))
                     <span class="help-block"><strong>{{ $errors->first('side_project_id') }}</strong></span>
                 @endif
-          </div>
+          </a>
         </li>
         
         <!-- -------------------------------------------------------------  -->
