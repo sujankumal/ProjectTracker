@@ -1,105 +1,132 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html>
 <head>
-    <meta charset="utf-8"/>
+ <meta charset="utf-8"/>
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     <meta name="_token" content="{{ csrf_token() }}"/>
-    
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <link href="{{ asset('css/my.css') }}" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <link href="{{ asset('css/my.css') }}" rel="stylesheet">
-    
+   
+    <link rel="stylesheet" href="adminlte/ionicons.min.css">
+    <link rel="stylesheet" href="adminlte/font-awesome.min.css">
+    <link rel="stylesheet" href="adminlte/AdminLTE.min.css">
+    <link rel="stylesheet" href="adminlte/_all-skins.min.css">
+    <link rel="stylesheet" href="adminlte/bootstrap.min.css">
+    <link rel="stylesheet" href="adminlte/bootstrap-social.min.css"/>
+    <link rel="stylesheet" href="{{ asset('css/my.css') }}">    
+    <!-- Google Font -->
+  <link rel="stylesheet" href="adminlte/googleapis.css">
+  <script src="adminlte/jquery.min.js"></script>    
+
 </head>
-<body >
-      
-    <div id="app" style="height:100%">
-        <nav class="navbar navbar-default navbar-fixed-top black-text" >
-            <div class="container">
-                <div class="navbar-header ">
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed btn-small" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false" aria-controls="app-navbar-collapse">
-                        <!-- <span class="sr-only">Toggle Navigation</span> -->
-                        <span class="glyphicon glyphicon-user"><i class="caret"></i></span>
-                        </button>
-                    @if(Route::currentRouteName() != null)
-                    <button type="button" class=" navbar-toggle collapsed" data-toggle="collapse" data-target="#side-menu" aria-expanded="false" aria-controls="app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @endif
-                    <!-- Branding Image -->
-                    <a class=" navbar-brand black-text" href="{{ url('/') }}"  id="brand-name">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+<body class="hold-transition skin-blue sidebar-collapse">
+<div class="wrapper">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right" id="nav-login">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}" class="black-text">Login</a></li>
-                            <li><a href="{{ route('register') }}" class="black-text">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle black-text"  data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu btn btn-small" id="logoutUl" style="width: 20px;">
-                                    <li id="ulogoutl"  >
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="black-text text-center">
-                                            Logout
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
-                                    </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+  <header class="main-header">
+    <!-- Logo -->
+   <a href="{{ url('/') }}" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>PT</b></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>ProjectTracker</b></span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- User Account: style can be found in dropdown.less -->
+          <li>
+                @guest
+                        <a href="{{ route('login') }}" class="pull-left">Login</a>
+                      
+                        <a href="{{ route('register') }}" class="pull-right">Register</a>
+                      
+                @else
+                  <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="black-text text-center">Logout</a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                @endguest
+            
+          </li>
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+          <section class="content-header   mx-auto text-center">
+            <h1>
+               @yield('page_heading')
+            </h1>
+          </section>
+
+          <!-- Main content -->
+          <section class="content">
+
+            <div class="row ">
+               @yield('section')
+
             </div>
-        </nav>
-        <div class="wrapper">
-            <div class="container-fluid jumbotron bg" id="mainContent0">
-                <div class="row">
-                    <div class="profile col-lg-3 col-md-3  col-sm-5 profile-sidebar sidebar-wrapper ">
-                        @yield('sidebar')
-                    </div>
-                    <div class="col-lg-9 col-md-9  col-sm-7 col-xs-12" id="mainContent10">
-                        @yield('content')
-                    </div>    
-                </div>
-                
-                @yield('contentWelcome')
-            </div>
-            <!-- Footer -->
-            <footer class="navbar navbar-default bg-4 text-center navbar-fixed-bottom  black-text" >
-                <p style="margin:10px">ProjectTracker © 2018</p> 
-            </footer>
-        </div>
-        
+            <!-- /.row -->
+
+          </section>
+          <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer mx-auto text-center" >
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0
     </div>
+    <strong >Copyright &copy; 2018 <a href="#">ProjectTracker</a>.</strong> All rights
+    reserved.
+  </footer>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset("js/my.js")}}" type="text/javascript"></script>
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">Recent Activity</h3>
+        
+      </div>
+      <!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <h3 class="control-sidebar-heading">General Settings</h3>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+ </div>
+<!-- Bootstrap 3.3.7 -->
+<script src="adminlte/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="adminlte/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="adminlte/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="adminlte/demo.js"></script>
+<script src="{{ asset("js/my.js")}}" type="text/javascript"></script>
+
 </body>
 </html>

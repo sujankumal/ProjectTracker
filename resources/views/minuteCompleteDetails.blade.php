@@ -1,27 +1,36 @@
-@extends('layouts.dashboard')
-@section('page_heading','Minute Complete Detail')
-@section('section')
 
-<div class="row container-fluid">
-	<?php 
+@extends('layouts.main')
+
+@section('page_heading','Minute Complete Detail')
+
+@section('section')
+       
+		<?php 
 		$minute_id = app('request')->input('param');
 		$minuteResult = App\minute::all()->where('id',$minute_id);
 		$projectResult = App\project_detail::all()->where('id',$minuteResult->first()->project_id)->first();
-		 $minuteImage = App\image::select('image')->where('minute_id',$minute_id)->get()->first()->image;
+		$minuteImage = App\image::select('image')->where('minute_id',$minute_id)->get()->first()->image;
 		?>
-			<div class="row container-fluid">
-				<div class=" jumbotron panel opag">
-					<span><b>Project Name: </b> {{$projectResult->name}}</span>
-					<br>
-					<span><b> Agenda: </b>{{$minuteResult->first()->agenda}}</span><br>
-					<span><b>Discussion: </b>{{$minuteResult->first()->discussion}}</span>
-					
+			 <div class="col-md-12">
+		        <div class="box box-primary">
+		            <div class="box-header with-border">
+		                <h3 class="box-title">Minute</h3>
+		            </div>
+		            <div class="box-body">
+						<span><b>Project Name: </b> {{$projectResult->name}}</span>
+						<br>
+						<span><b> Agenda: </b>{{$minuteResult->first()->agenda}}</span><br>
+						<span><b>Discussion: </b>{{$minuteResult->first()->discussion}}</span>
+						
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-6 col-md-6">
-					<div class="container-fluid panel opag">
-						<div class="text-center"><p>Acheivements</p></div>
+			<div class="col-lg-6 col-md-6">
+					<div class="box box-primary">
+		            <div class="box-header with-border">
+		                <h3 class="box-title">Acheivements</h3>
+		            </div>
+		            <div class="box-body">
 						<ol id="minuteDetAchScroll">
 							@foreach(App\Acheivement::select('member_id','acheivement')->where('minute_id', $minute_id)->get() as $acheivementResult)
 							<li>
@@ -33,9 +42,13 @@
 						</ol>
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6">
-					<div class="container-fluid panel opag ">
-						<div class="text-center"><p>Responsibilities</p></div>
+			</div>
+			<div class="col-lg-6 col-md-6">
+				<div class="box box-primary">
+		            <div class="box-header with-border">
+		                <h3 class="box-title">Responsibilities</h3>
+		            </div>
+		            <div class="box-body">
 						<ol id="minuteDetResScroll">
 							@foreach(App\Responsibility::select('member_id','responsibility')->where('minute_id', $minute_id)->get() as $responsibilityResult)
 							<li>
@@ -48,9 +61,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="row container-fluid">
-				<div class=" panel opag">
-					<div class="text-center"><p>Attendees</p> </div>
+			<div class="col-lg-6 col-md-6">
+				<div class="box box-primary">
+		            <div class="box-header with-border">
+		                <h3 class="box-title">Attendees</h3>
+		            </div>
+		            <div class="box-body">
 					<ol id="minuteDetAtteScroll">
 						@foreach(App\qr::all()->where('id',$minuteResult->first()->qr_id) as $attendees)
 							@if($attendees->supervisor_check == 1)
@@ -84,14 +100,20 @@
 							
 						@endforeach
 					</ol>
+					</div>
 				</div>
 			</div>
-			<div class="row container-fluid">
-				<div class="jumbotron panel opag mx-auto text-center">
+			<div class="col-lg-6 col-md-6">
+				<div class="box box-primary">
+		            <div class="box-header with-border">
+		                <h3 class="box-title">Photo</h3>
+		            </div>
+		            <div class="box-body">
 					<img class=" img-fluid" src="{{asset('uploads\\'.$minuteImage)}}" id="minuteDetailsImage">
 					<figcaption>Figure: <i>Image of Meeting</i></figcaption>
+					</div>
 				</div>
-			</div>
-</div>
+			</div>	
+
 
 @stop

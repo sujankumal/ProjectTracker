@@ -1,18 +1,22 @@
-@extends('layouts.dashboard')
-@section('page_heading','Dashboard')
+@extends('layouts.main')
+@section('page_heading','')
 
 @section('section')
-<div class="row container-fluid" id="qrform">
-	<form id = "QRForm" class="form-horizontal" method="POST" action="/QRCreate">
-		<div class="jumbotron panel opag">   
-        {{ csrf_field() }}
-		 @if(session()->has('qrfilename'))
-                <div class="alert alert-success">
-                   	<a href="qrs/{{session()->get('qrfilename')}}">
-                      <img src="qrs/{{session()->get('qrfilename')}}" id="qrimage">
-                    </a>
-                </div>
-          @endif
+<form id = "QRForm" class="form-horizontal" method="POST" action="/QRCreate">
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Genereate QR Code</h3>
+            </div>
+            <div class="box-body">
+                {{ csrf_field() }}
+    		 @if(session()->has('qrfilename'))
+                    <div class="alert alert-success   mx-auto text-center">
+                       	<a href="qrs/{{session()->get('qrfilename')}}">
+                          <img src="qrs/{{session()->get('qrfilename')}}" id="qrimage">
+                        </a>
+                    </div>
+              @endif
             <script src="{{ asset("js/autho.js")}}" type="text/javascript"></script>
            
             @if(session()->has('sidebarProjectSelectedResponsePID'))
@@ -39,8 +43,9 @@
                         <button type="submit" class="btn btn-md btn-success" form="QRForm">QR Create</button>
                     </div>
                 </div>
-		</div> 
+		  </div> 
+        </div>
+    </div>
 	</form>
 
-</div>
 @stop

@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('css/my.css') }}">    
     <!-- Google Font -->
   <link rel="stylesheet" href="adminlte/googleapis.css">
+  <script src="adminlte/jquery.min.js"></script>    
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -25,7 +27,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../../index2.html" class="logo">
+    <a href="{{ url('/') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>PT</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -61,9 +63,11 @@
                   <img src="{{url('uploads/'.$a->pimage)}}" class="img-circle" alt="{{$a}}"/>
                   @else
                   <img src="{{url('images/user.png')}}" class="img-circle"  alt="{{$a}}"/>
-                  @endif
+                @endif
                 <p>
+                  <a href="{{ route('profile', ['user' => Auth::user()->name,'value' => Auth::id()]) }}">
                   {{ Auth::user()->name }}
+                  </a>  
                 </p>
               </li>
 
@@ -95,21 +99,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <?php $a =App\ProfileImage::select('pimage')->where('user_id',Auth::id())->orderBy('created_at', 'desc')->first()?>
-          @if($a!=null)
-          <img src="{{url('uploads/'.$a->pimage)}}" class="img-circle" alt="{{$a}}"/>
-          @else
-          <img src="{{url('images/user.png')}}" class="img-circle" alt="{{$a}}"/>
-          @endif
-        </div>
-        <div class="pull-left info">
-          <a href="{{ route('profile', ['user' => Auth::user()->name,'value' => Auth::id()]) }}">
-            <p><i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }} </p>
-            <i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
+      
       
                         
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -172,7 +162,7 @@
                             @elseif(session()->get('sidebarProjectSelectedResponse') == 2)
                             <!-- head -->
                                 <li class="{{(Request::is('*QR') ? 'active' : '') }}">
-                                    <a href="{{ ('QR') }}"><i class="glyphicon glyphicon-qrcode"></i><span> Generate QR Code</span></a>
+                                    <a href="{{ ('QR') }}"><i class="fa fa-qrcode" aria-hidden="true"></i><span> Generate QR Code</span></a>
                                     <!-- /.nav-second-level -->
                                 </li>
                                 <li class="{{(Request::is('*notifications') ? 'active' : '') }}">
@@ -228,7 +218,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
           <!-- Content Header (Page header) -->
-          <section class="content-header">
+          <section class="content-header   mx-auto text-center">
             <h1>
                @yield('page_heading')
             </h1>
@@ -248,7 +238,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
+  <footer class="main-footer mx-auto text-center">
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
@@ -286,7 +276,6 @@
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<script src="adminlte/jquery.min.js"></script>    
 <!-- Bootstrap 3.3.7 -->
 <script src="adminlte/bootstrap.min.js"></script>
 <!-- FastClick -->

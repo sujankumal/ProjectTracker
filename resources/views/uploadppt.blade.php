@@ -1,8 +1,12 @@
-@extends ('layouts.dashboard')
-@section('page_heading','PPT file Upload')
+@extends ('layouts.main')
+@section('page_heading','PPT, PDF file Uploads')
 @section('section')
-<div class="row container-fluid">
-    <div class="jumbotron panel">
+<div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Select file to upload</h3>
+            </div>
+            <div class="box-body">
                 <form id="minuteForm" class="form-horizontal" method="POST" action="/pptUpload" enctype="multipart/form-data">
                   {{ csrf_field() }}
                     @if(session()->has('pptUpload'))
@@ -50,6 +54,7 @@
                         </div>
                     </div>
                 </form>
+        </div>
     </div>
 </div>
 @stop

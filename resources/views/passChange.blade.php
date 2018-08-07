@@ -1,28 +1,29 @@
-@extends('layouts.app')
 
-@section('content')
-<div class="row container-fluid">
-  <div class="row container-fluid ">
-    <br>
-  </div>
-    <div class="col-md-10">
-            <div class="row jumbotron panel opag black-text">
-              <br>
-                <div class=" text-center margin black-text" >
-                  <h3>Change Password</h3>
-                </div>
+@extends('layouts.main')
+
+@section('page_heading','')
+
+@section('section')
+       
+<div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Change Password</h3>
+            </div>
+            <div class="box-body">
+   
                   <form id="form-change-password" class="black-text form-horizontal" role="form" method="POST" action="{{ url('/password/update') }}" novalidate class="form-horizontal">
                     {{ csrf_field() }}
                     <div class="form-group">   
-                      <label for="password" class="col-md-4 control-label">New Password &nbsp;<span class="glyphicon glyphicon-lock"> </span></label>
+                      <label for="password" class="col-md-4 control-label">New Password &nbsp;<i class="fa fa-lock" aria-hidden="true"></i></label>
                       <div class="col-md-6">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="********">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="password">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="password_confirmation" class="col-md-4 control-label">Re-enter Password &nbsp;<span class="glyphicon glyphicon-lock"></span></label>
+                      <label for="password_confirmation" class="col-md-4 control-label">Re-enter Password &nbsp;<i class="fa fa-lock" aria-hidden="true"></i></label>
                       <div class="col-md-6">
-                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="********">
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="password">
                       </div>
                     </div>
                     <div class="form-group">

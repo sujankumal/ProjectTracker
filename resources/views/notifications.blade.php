@@ -1,10 +1,16 @@
-@extends ('layouts.dashboard')
 
-@section ('page_heading','Notice')
+@extends('layouts.main')
+
+@section('page_heading','Notice')
 
 @section('section')
-<div class="row container-fluid">
-    <div class=" jumbotron panel">
+
+<div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Enter the Notice</h3>
+            </div>
+            <div class="box-body">
             <form id="projectNotice" class="form-horizontal" method="POST" action="/sendNotice" enctype="multipart/form-data">
               {{ csrf_field() }}
                 @if(session()->has('messageNoticeCreate'))
@@ -30,7 +36,7 @@
                 <div class="form-group{{ $errors->has('enteredNotice') ? ' has-error' : '' }}">
                     <label for="enteredNotice" class="col-md-4 control-label">Enter Notice</label>
                     <div class="col-md-6">
-                        <input id="enteredNotice" type="text" class="form-control" name="enteredNotice" value="{{ old('enteredNotice') }}" required >
+                        <textarea id="enteredNotice" type="text" class="form-control" name="enteredNotice" value="{{ old('enteredNotice') }}" required ></textarea>
 
                    		 @if ($errors->has('enteredNotice'))
                             <span class="help-block"><strong>{{ $errors->first('enteredNotice') }}</strong></span>
@@ -44,6 +50,7 @@
                 </div>
                 
             </form>
+        </div>
     </div>
 </div>
 @stop

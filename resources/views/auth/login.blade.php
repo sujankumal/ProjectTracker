@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container container-fluid">
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-">
+@section('section')
+
+<div class="col-md-6 col-md-offset-3">
+        <div class="box box-primary ">
+            <div class="box-body">
             <div class="panel-default ">
                 <div class="text-center margin black-text" ><h1>Login</h1></div>
                 <div class="mx-auto text-center">
@@ -25,7 +24,7 @@
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address &nbsp; &nbsp;<span class="glyphicon glyphicon-envelope"> </span> </label>
+                            <label for="email" class="col-md-4 control-label">E-Mail Address &nbsp; &nbsp;<span class="fa fa-envelope"> </span> </label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="example@example.com">
@@ -39,10 +38,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password &nbsp; &nbsp;<span class="glyphicon glyphicon-lock"> </span></label>
+                            <label for="password" class="col-md-4 control-label">Password &nbsp; &nbsp;<i class="fa fa-lock"> </i></label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" placeholder="*********" required>
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -65,7 +64,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4" id="dashboardSection">
                                 <button type="submit" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-log-in"> </span>&nbsp; Login
+                                        <span class="fa fa-sign-in"> </span>&nbsp; Login
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">

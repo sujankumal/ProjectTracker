@@ -1,9 +1,16 @@
-@extends ('layouts.dashboard')
+
+@extends('layouts.main')
+
 @section('page_heading','Minute Form')
 
 @section('section')
-<div class="row container-fluid">
-    <div class=" jumbotron panel">
+     <div class="col-md-8">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Fill minute details here</h3>
+            </div>
+            <div class="box-body">
+                
             <form id="minuteForm" class="form-horizontal" method="POST" action="/minuteCreate" enctype="multipart/form-data">
               {{ csrf_field() }}
                 @if(session()->has('messageMinuteCreate'))
@@ -144,5 +151,7 @@
                 </div>
             </form>
         </div>
+    </div>
 </div>
+
 @stop

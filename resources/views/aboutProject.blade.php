@@ -4,7 +4,8 @@
 @section('page_heading','Detail of Project')
 
 @section('section')
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+<script type="text/javascript" src="{{ asset('js/google.loader.js') }}"></script>
                 <?php $results = App\project_detail::all()->where('id', app('request')->input('param')); ?>
                 @if($results->isEmpty())
                 <div class="col-md-3">

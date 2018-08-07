@@ -1,13 +1,16 @@
-@extends ('layouts.dashboard')
+@extends ('layouts.main')
 @section('page_heading','QR Scan')
 
 @section('section')
 <script type="text/javascript" src="{{ asset('js/qrcode.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/qr.js') }}"></script>
 <meta name="_token" content="{{ csrf_token() }}">
-<div class="row container-fluid" id="main" >
-    <div class="row" id="mainbody" >
-            <table class="tsel container-fluid jumbotron panel mx-auto text-center" width="100%" border="0" >
+    
+<div class="col-md-12" id="main" >
+    <div class="box box-primary" id="mainbody" >
+        <div class="box-body">
+         
+           <table class="tsel container-fluid jumbotron panel mx-auto text-center" width="100%" border="0" >
                 
                 <tr>
                     <td colspan="2" align="center">
@@ -52,9 +55,10 @@
                         </div>
                     </div>
                 @endif
-                  
+             
     </div>
     <canvas id="qr-canvas" width="800" height="600" style="width: 320px;  height: 240px; display:none;" ></canvas>
+    </div>
     <script type="text/javascript">load();</script>
 </div>
 
