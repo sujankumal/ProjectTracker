@@ -21,10 +21,12 @@
                   <div class="form-group{{ $errors->has('projID') ? ' has-error' : '' }}">
                     <label for="projID" class="col-md-4 control-label">Project</label>
                     <div class="col-md-6">
-                       <select id="projID" name ="projID"  class="form-control" required>
-                            <option value=""></option>
+                       <select id="projID" name ="projID[]" multiple  class="form-control" required>
+                            <option value="" disabled></option>
+                            <hr/>
                             @foreach(App\project_detail::all() as $project)
-                                <option value="{{$project->id}}">{{$project->name}}</option>
+                                <option value="{{$project->id}}" class="btn-sm">{{$project->name}}</option>
+                                <hr/>
                             @endforeach
                         </select>
                     @if ($errors->has('projID'))

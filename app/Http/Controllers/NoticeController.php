@@ -47,32 +47,55 @@ class NoticeController extends Controller
         $request_data = $request->All();
         $notice = $request_data['enteredNotice'];
         $this->validator($request_data);
-        
-        $transaction = DB::transaction(function() use ($request, $request_data)
-        {
-            $notice = notice::create([
-                'u_id'=> Auth::user()->id,
-                'project_id'=> $request_data['projID'],
-                'notice'=>$request_data['enteredNotice'],
-            ]);
-            
-            foreach (App\project_detail::all()->where('id',$request_data['projID']) as $result) {
-               if ($result->head_id!= null) {
-                    Mail::to(App\User::select('email')->where('id',$result->head_id)->first()->email)->send(new MailToUser($notice));
-               }
-               if ($result->supervisor_id!= null&&$result->supervisor_id!=$result->head_id) {
-                    Mail::to(App\User::select('email')->where('id',$result->supervisor_id)->first()->email)->send(new MailToUser($notice));
+        $emails = array();
+        foreach ($request_data['projID'] as $project_id) {
+            # code...
+             foreach (App\project_detail::all()->where('id',$project_id) as $result) {
+                if ($result->head_id!= null) {
+                    $value = App\User::select('email')->where('id',$result->head_id)->first()->email;
+                    if(!in_array($value, $emails, true)){
+                        array_push($emails, $value);
+                    }
+               }if ($result->supervisor_id!= null&&$result->supervisor_id!=$result->head_id) {
+                    $value = App\User::select('email')->where('id',$result->supervisor_id)->first()->email;
+                    if(!in_array($value, $emails, true)){
+                        array_push($emails, $value);
+                    }
                }
                if ($result->leader_id!= null&&$result->leader_id!=$result->supervisor_id&&$result->leader_id!=$result->head_id) {
-                    Mail::to(App\User::select('email')->where('id',$result->leader_id)->first()->email)->send(new MailToUser($notice));
+                     $value = App\User::select('email')->where('id',$result->leader_id)->first()->email;
+                    if(!in_array($value, $emails, true)){
+                        array_push($emails, $value);
+                    }
                }
                if ($result->member_idi!= null&&$result->member_idi!=$result->supervisor_id&&$result->member_idi!=$result->head_id&&$result->member_idi!=$result->leader_id) {
-                    Mail::to(App\User::select('email')->where('id',$result->member_idi)->first()->email)->send(new MailToUser($notice));
+                     $value = App\User::select('email')->where('id',$result->member_idi)->first()->email;
+                    if(!in_array($value, $emails, true)){
+                        array_push($emails, $value);
+                    }
                }
                if ($result->member_idii!= null&&$result->member_idii!=$result->supervisor_id&&$result->member_idii!=$result->head_id&&$result->member_idii!=$result->leader_id&&$result->member_idii!=$result->member_idi) {
-                    Mail::to(App\User::select('email')->where('id',$result->member_idii)->first()->email)->send(new MailToUser($notice));
+                     $value = App\User::select('email')->where('id',$result->member_idii)->first()->email;
+                    if(!in_array($value, $emails, true)){
+                        array_push($emails, $value);
+                    }
                }
-               
+            }
+        }
+        // dd($emails);
+        $transaction = DB::transaction(function() use ($request, $request_data, $emails, $notice)
+        {
+            foreach ($request_data['projID'] as $project_id) {
+                $notIce = notice::create([
+                'u_id'=> Auth::user()->id,
+                'project_id'=> $project_id,
+                'notice'=>$request_data['enteredNotice'],
+                ]);
+            }
+            
+            
+            foreach ($emails as $email) {
+               Mail::to($email)->send(new MailToUser($notice));
             }
             
         });
@@ -86,7 +109,7 @@ class NoticeController extends Controller
             
         ];
         return Validator::make($data, [
-            'projID' => 'required|numeric|max:255',
+            'projID.[*]' => 'required|numeric|max:255',
             'enteredNotice'=>'required',
         ],$messages)->validate();
     }

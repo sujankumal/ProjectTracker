@@ -2,7 +2,7 @@
 # Hello Dear,
 
 Message:<br>
-**{{$message->notice}}**
+**{{$message}}**
 <br>
 Sender:*{{ Auth::user()->name }}*
 <br>
