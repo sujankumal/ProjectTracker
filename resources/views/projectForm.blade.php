@@ -63,8 +63,8 @@
                     <div class="col-md-6">
                         <select id="projectHead" name ="projectHead" class="form-control" required>
                             <option value=""></option>
-                            @foreach(App\User::all() as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            @foreach(App\User::orderBy('name', 'asc')->get() as $user)
+                                <option value="{{$user->id}}">{{$user->name}} : ({{$user->email}})</option>
                             @endforeach
                         </select>
                         @if ($errors->has('projectHead'))
@@ -77,8 +77,8 @@
                     <div class="col-md-6">
                         <select id="projectSupervisor" name ="projectSupervisor" class="form-control" required>
                             <option value=""></option>
-                            @foreach(App\User::all() as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            @foreach(App\User::orderBy('name', 'asc')->get() as $user)
+                                <option value="{{$user->id}}">{{$user->name}} : ({{$user->email}})</option>
                             @endforeach
                         </select>@if ($errors->has('projectSupervisor'))
                             <span class="help-block"><strong>{{ $errors->first('projectSupervisor') }}</strong></span>
@@ -90,8 +90,8 @@
                     <div class="col-md-6">
                         <select id="projectLeader" name ="projectLeader" class="form-control" required>
                             <option value=""></option>
-                            @foreach(App\User::all() as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            @foreach(App\User::orderBy('name', 'asc')->get() as $user)
+                                <option value="{{$user->id}}">{{$user->name}} : ({{$user->email}})</option>
                             @endforeach
                         </select>@if ($errors->has('projectLeader'))
                             <span class="help-block"><strong>{{ $errors->first('projectLeader') }}</strong></span>
@@ -103,8 +103,8 @@
                     <div class="col-md-6">
                         <select id="projectMember1" name ="projectMember1" class="form-control">
                             <option value=""></option>
-                            @foreach(App\User::all() as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            @foreach(App\User::orderBy('name', 'asc')->get() as $user)
+                                <option value="{{$user->id}}">{{$user->name}} : ({{$user->email}})</option>
                             @endforeach
                         </select>
                         @if ($errors->has('projectMember1'))
@@ -117,8 +117,8 @@
                     <div class="col-md-6">
                         <select id="projectMember2" name ="projectMember2" class="form-control">
                             <option value=""></option>
-                            @foreach(App\User::all() as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                             @foreach(App\User::orderBy('name', 'asc')->get() as $user)
+                                <option value="{{$user->id}}">{{$user->name}} : ({{$user->email}})</option>
                             @endforeach
                         </select>
                         @if ($errors->has('projectMember2'))
